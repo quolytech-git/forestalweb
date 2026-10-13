@@ -119,7 +119,9 @@ export default function LoadingScreen({
           initial={{ opacity: 0, y: 14, letterSpacing: '0.14em' }}
           animate={{ opacity: 0.9, y: 0, letterSpacing: '0.24em' }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
+          className="loader-eyebrow"
           style={{
+            textAlign: 'center',
             fontFamily: "var(--font-sans, 'Inter', sans-serif)",
             fontSize: '12px',
             fontWeight: 700,
@@ -245,6 +247,7 @@ export default function LoadingScreen({
         initial={{ opacity: 0, y: 6 }}
         animate={isRevealing ? { opacity: 0 } : { opacity: 0.5, y: 0 }}
         transition={{ duration: 0.5, delay: 0.3 }}
+        className="loader-tag-left"
         style={{
           position: 'absolute',
           bottom: '32px',
@@ -265,6 +268,7 @@ export default function LoadingScreen({
         initial={{ opacity: 0, y: 6 }}
         animate={isRevealing ? { opacity: 0 } : { opacity: 0.85, y: 0 }}
         transition={{ duration: 0.5, delay: 0.3 }}
+        className="loader-tag-right"
         style={{
           position: 'absolute',
           bottom: '32px',

@@ -53,6 +53,7 @@ export default function ContactPage({ lang = 'en' }) {
       <section style={{ padding: '0 0 100px' }}>
         <div className="container">
           <div
+            className="contact-layout-grid"
             style={{
               display: 'grid',
               gridTemplateColumns: '1.2fr 1fr',
@@ -109,7 +110,7 @@ export default function ContactPage({ lang = 'en' }) {
                     </select>
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                  <div className="form-field-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                     <div className="form-group">
                       <label className="form-label" htmlFor="contact-name">{isSq ? 'Emri dhe mbiemri *' : 'Full name *'}</label>
                       <input
@@ -137,7 +138,7 @@ export default function ContactPage({ lang = 'en' }) {
                     </div>
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                  <div className="form-field-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                     <div className="form-group">
                       <label className="form-label" htmlFor="contact-phone">{isSq ? 'Numri i telefonit' : 'Phone number'}</label>
                       <input

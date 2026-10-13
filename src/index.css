@@ -9102,3 +9102,68 @@ html, body {
   overflow-x: hidden;
   width: 100%;
 }
+
+/* =========================================================
+   MOBILE FIXES: hero video, loading screen, contact page
+   ========================================================= */
+
+/* Keep the light design when a phone browser forces dark mode */
+:root {
+  color-scheme: only light;
+}
+
+@media (max-width: 580px) {
+  /* Hero: show the full video as a band under the navbar, text below it */
+  .hero-video-contain {
+    inset: auto;
+    top: 84px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+  .hero-fullscreen {
+    padding-top: calc(84px + (100vw - 20px) * 0.5625 + 24px);
+  }
+  .hero-h1 {
+    font-size: 34px;
+  }
+  .hero-paragraph {
+    font-size: 14px;
+  }
+
+  /* Loading screen: centred tagline, bottom tags that do not collide */
+  .loader-eyebrow {
+    font-size: 10px !important;
+    letter-spacing: 0.14em !important;
+    max-width: 300px;
+    line-height: 1.6;
+  }
+  .loader-tag-left {
+    left: 20px !important;
+    bottom: 24px !important;
+    font-size: 10px !important;
+    max-width: 60%;
+  }
+  .loader-tag-right {
+    right: 20px !important;
+    bottom: 24px !important;
+    font-size: 11px !important;
+  }
+}
+
+@media (max-width: 860px) {
+  /* Contact page: form and contact card stacked instead of side by side */
+  .contact-layout-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  /* Form fields one per row on phones */
+  .form-field-row {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+  }
+}

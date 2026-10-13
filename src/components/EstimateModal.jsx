@@ -123,7 +123,7 @@ export default function EstimateModal({ isOpen, onClose, initialService, lang = 
               </div>
 
               {/* Contact Information */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div className="form-field-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                 <div className="form-group">
                   <label className="form-label" htmlFor="estimate-name">{isSq ? 'Emri dhe mbiemri *' : 'Full name *'}</label>
                   <input
@@ -151,7 +151,7 @@ export default function EstimateModal({ isOpen, onClose, initialService, lang = 
                 </div>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div className="form-field-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                 <div className="form-group">
                   <label className="form-label" htmlFor="estimate-phone">{isSq ? 'Numri i telefonit' : 'Phone number'}</label>
                   <input
