@@ -1,0 +1,250 @@
+// Forest-Al website content (English + Albanian).
+// Anything in [square brackets] is a placeholder that Forest-Al must confirm before launch.
+
+export const siteData = {
+  brand: {
+    name: 'Forest-Al',
+    tagline: 'Construction, metal structures, drywall systems and property maintenance.',
+    taglineSq: 'Ndërtim, konstruksione metalike, sisteme gipsi dhe mirëmbajtje pronash.',
+    phone: '+355 XX XXX XXXX',
+    email: 'info@[domain].al',
+    address: '[Office address — to be confirmed], Albania',
+    addressSq: '[Adresa e zyrës — për t’u konfirmuar], Shqipëri',
+    hours: '[Opening hours — to be confirmed]',
+    hoursSq: '[Orari — për t’u konfirmuar]',
+  },
+
+  // Set `connected` to true only once the forms send to a working email inbox or backend.
+  forms: {
+    connected: false,
+  },
+
+  // Facts that are true today. Replace the bracketed one once Forest-Al confirms the number.
+  stats: [
+    { value: '9', label: 'Services', labelSq: 'Shërbime' },
+    { value: '3', label: 'Areas of work', labelSq: 'Fusha pune' },
+    { value: '6', label: 'Steps from consultation to handover', labelSq: 'Hapa nga konsulta te dorëzimi' },
+    { value: '[X]', label: 'Completed projects (to be confirmed)', labelSq: 'Projekte të përfunduara (për t’u konfirmuar)' },
+  ],
+
+  services: [
+    {
+      id: 'metal-structures',
+      slug: 'metal-structures',
+      category: 'Construction',
+      categorySq: 'Ndërtim',
+      title: 'Metal Structures',
+      titleSq: 'Konstruksione Metalike',
+      description: 'Metal frameworks and structural elements, planned and installed to suit each building.',
+      descriptionSq: 'Skelete dhe elemente metalike, të planifikuara dhe të montuara sipas nevojave të çdo objekti.',
+      image: 'https://framerusercontent.com/images/UYh9N4KBSOPSDSa6Sxa7Afu1k.png',
+    },
+    {
+      id: 'drywall-systems',
+      slug: 'drywall-systems',
+      category: 'Construction',
+      categorySq: 'Ndërtim',
+      title: 'Drywall Partitions & Ceilings',
+      titleSq: 'Ndarje dhe Tavane me Gips',
+      description: 'Plasterboard partitions, wall linings and ceiling systems for new layouts and finished interiors.',
+      descriptionSq: 'Ndarje me pllaka gipsi, veshje muresh dhe sisteme tavanesh për hapësira të reja dhe të rregullta.',
+      image: 'https://framerusercontent.com/images/9EY2KR9LwqjXO6Pc9nCUnTMxZ34.png',
+    },
+    {
+      id: 'construction-works',
+      slug: 'construction-works',
+      category: 'Construction',
+      categorySq: 'Ndërtim',
+      title: 'Construction Works',
+      titleSq: 'Punime Ndërtimore',
+      description: 'General building work carried out to an agreed scope, from preparation to completion.',
+      descriptionSq: 'Punime të përgjithshme ndërtimi sipas një objekti pune të rënë dakord, nga përgatitja deri në përfundim.',
+      image: 'https://framerusercontent.com/images/W6vN3FAgSPCgF5b05VV6w1jyF7E.png',
+    },
+    {
+      id: 'interior-renovation',
+      slug: 'interior-renovation',
+      category: 'Renovation',
+      categorySq: 'Rinovim',
+      title: 'Interior Renovation',
+      titleSq: 'Rinovim i Brendshëm',
+      description: 'Practical renovation and reconstruction of interior spaces in homes and business premises.',
+      descriptionSq: 'Rinovim dhe rikonstruksion praktik i ambienteve të brendshme në banesa dhe ambiente biznesi.',
+      image: 'https://framerusercontent.com/images/6LJyc2F6qLQpFWiHhhCXZpjhRs.png',
+    },
+    {
+      id: 'electrical-maintenance',
+      slug: 'electrical-maintenance',
+      category: 'Maintenance',
+      categorySq: 'Mirëmbajtje',
+      title: 'Electrical Maintenance',
+      titleSq: 'Mirëmbajtje Elektrike',
+      description: 'Inspection, repair and upkeep of electrical installations in homes and business premises.',
+      descriptionSq: 'Kontroll, riparim dhe mirëmbajtje e instalimeve elektrike në banesa dhe ambiente biznesi.',
+      image: 'https://framerusercontent.com/images/2TufGXOZ0299UyHk7h3zgXt40Y.png',
+    },
+    {
+      id: 'plumbing-maintenance',
+      slug: 'plumbing-maintenance',
+      category: 'Maintenance',
+      categorySq: 'Mirëmbajtje',
+      title: 'Plumbing Maintenance',
+      titleSq: 'Mirëmbajtje Hidraulike',
+      description: 'Repairs and routine maintenance for water supply and drainage systems.',
+      descriptionSq: 'Riparime dhe mirëmbajtje e rregullt e sistemeve të furnizimit me ujë dhe të shkarkimit.',
+      image: 'https://framerusercontent.com/images/hjSTUWGnB64GDRDSz54OvZL3w.png',
+    },
+    {
+      id: 'mechanical-maintenance',
+      slug: 'mechanical-maintenance',
+      category: 'Maintenance',
+      categorySq: 'Mirëmbajtje',
+      title: 'Mechanical Maintenance',
+      titleSq: 'Mirëmbajtje Mekanike',
+      description: 'Upkeep of the mechanical systems that keep a building working day to day.',
+      descriptionSq: 'Mirëmbajtje e sistemeve mekanike që e mbajnë objektin funksional çdo ditë.',
+      image: 'https://framerusercontent.com/images/6VVQsiFkXfLSveQ0TlJoNmEw0o.png',
+    },
+    {
+      id: 'building-maintenance',
+      slug: 'building-maintenance',
+      category: 'Maintenance',
+      categorySq: 'Mirëmbajtje',
+      title: 'Building Maintenance',
+      titleSq: 'Mirëmbajtje Ndërtimore',
+      description: 'Ongoing repairs and upkeep that keep properties safe, usable and in good condition.',
+      descriptionSq: 'Riparime dhe mirëmbajtje e vazhdueshme që i mbajnë pronat të sigurta, funksionale dhe në gjendje të mirë.',
+      image: 'https://framerusercontent.com/images/ASNpmAm5rTazLeHPXlGNwSy03E.png',
+    },
+    {
+      id: 'property-solutions',
+      slug: 'property-solutions',
+      category: 'Renovation',
+      categorySq: 'Rinovim',
+      title: 'Solutions for Every Property',
+      titleSq: 'Zgjidhje për Çdo Lloj Aseti',
+      description: 'Construction, renovation and maintenance combined for homes, businesses and other assets.',
+      descriptionSq: 'Ndërtim, rinovim dhe mirëmbajtje të kombinuara për banesa, biznese dhe asete të tjera.',
+      image: 'https://framerusercontent.com/images/Y0UyHOTlHMggYrl4Jk2SN3jxs.png',
+    },
+  ],
+
+  // Homepage before/after cards. They link to the project placeholders in projectDetailsData.js.
+  beforeAfterCases: [
+    {
+      id: 'project-01',
+      title: 'Metal structure installation',
+      titleSq: 'Montim konstruksioni metalik',
+      location: '[Location]',
+      locationSq: '[Vendndodhja]',
+      duration: '[Duration]',
+      durationSq: '[Kohëzgjatja]',
+      beforeImage: 'https://framerusercontent.com/images/K75Do5WyJkwl7jf7vlvmaKYtB9U.png',
+      afterImage: 'https://framerusercontent.com/images/oAiv1BWUzaADV8dwFVmRMS2DFwk.png',
+    },
+    {
+      id: 'project-02',
+      title: 'Drywall partitions and ceilings',
+      titleSq: 'Ndarje dhe tavane me gips',
+      location: '[Location]',
+      locationSq: '[Vendndodhja]',
+      duration: '[Duration]',
+      durationSq: '[Kohëzgjatja]',
+      beforeImage: 'https://framerusercontent.com/images/Q0r6QxWbCMliJ2Cm1CXtefjHvyM.png',
+      afterImage: 'https://framerusercontent.com/images/gXYIga7MVhx8NlNKRVqZZdh2u8.png',
+    },
+    {
+      id: 'project-03',
+      title: 'Interior renovation',
+      titleSq: 'Rinovim i brendshëm',
+      location: '[Location]',
+      locationSq: '[Vendndodhja]',
+      duration: '[Duration]',
+      durationSq: '[Kohëzgjatja]',
+      beforeImage: 'https://framerusercontent.com/images/TxD7jGkM7yuK0gau0BM0sclsc0.png',
+      afterImage: 'https://framerusercontent.com/images/OwqNfEvtHZzCWn5PuSM3lfVPM.png',
+    },
+  ],
+
+  faqs: [
+    {
+      question: 'How is the cost of a project determined?',
+      questionSq: 'Si përcaktohet kostoja e një projekti?',
+      answer: 'Cost depends on the scope of work, the materials and systems involved, access to the site and the condition of the property. We first understand what you need, then assess the work and prepare a quotation. Some projects can be priced from photos and a description; others need a visit to the site.',
+      answerSq: 'Kostoja varet nga objekti i punës, materialet dhe sistemet që përdoren, aksesi në objekt dhe gjendja e pronës. Fillimisht kuptojmë çfarë ju nevojitet, më pas vlerësojmë punën dhe përgatisim një preventiv. Disa projekte mund të vlerësohen nga fotot dhe përshkrimi; të tjerat kërkojnë një vizitë në vend.',
+    },
+    {
+      question: 'How long does construction or renovation work take?',
+      questionSq: 'Sa zgjasin punimet e ndërtimit ose të rinovimit?',
+      answer: 'It depends on the size and type of work. A small repair can take a day, while a renovation or new structure can take several weeks. We agree a working schedule with you before work starts and keep you informed if anything changes.',
+      answerSq: 'Varet nga madhësia dhe lloji i punës. Një riparim i vogël mund të zgjasë një ditë, ndërsa një rinovim ose një strukturë e re mund të zgjasë disa javë. Para fillimit bien dakord me ju për një grafik pune dhe ju njoftojmë nëse ndryshon diçka.',
+    },
+    {
+      question: 'Will my project need permits or approvals?',
+      questionSq: 'A do të ketë nevojë projekti im për leje ose miratime?',
+      answer: 'Some structural, exterior or change-of-use works may require permits or approvals from the relevant authorities. We can tell you what we see during the assessment, but the exact requirements depend on the property and the local rules. [Forest-Al to confirm whether it prepares or manages permit applications.]',
+      answerSq: 'Disa punime strukturore, të jashtme ose ndryshime në përdorimin e objektit mund të kërkojnë leje ose miratime nga autoritetet përkatëse. Gjatë vlerësimit ju tregojmë atë që vërejmë, por kërkesat e sakta varen nga prona dhe rregullat vendore. [Forest-Al të konfirmojë nëse përgatit ose menaxhon aplikimet për leje.]',
+    },
+    {
+      question: 'What happens if I need maintenance or a repair?',
+      questionSq: 'Çfarë ndodh nëse më duhet mirëmbajtje ose një riparim?',
+      answer: 'Tell us what the problem is, where the property is and how urgent it is. We will let you know whether the work falls within our services, what the next step is and when we can attend. [Forest-Al to confirm whether it offers urgent call-outs or maintenance contracts.]',
+      answerSq: 'Na tregoni cili është problemi, ku ndodhet prona dhe sa urgjent është. Do t’ju njoftojmë nëse puna përfshihet në shërbimet tona, cili është hapi i radhës dhe kur mund të vijmë. [Forest-Al të konfirmojë nëse ofron ndërhyrje urgjente ose kontrata mirëmbajtjeje.]',
+    },
+    {
+      question: 'How do I request a consultation or a quotation?',
+      questionSq: 'Si mund të kërkoj një konsultë ose një preventiv?',
+      answer: 'Use the “Request a Free Estimate” form on this website, or call or email us directly. Include the type of work, the location of the property and, if possible, a few photos. We will reply with the next steps.',
+      answerSq: 'Përdorni formularin “Kërkoni një Preventiv Falas” në këtë faqe, ose na telefononi apo na shkruani drejtpërdrejt. Shënoni llojin e punës, vendndodhjen e pronës dhe, nëse është e mundur, disa foto. Do t’ju kthejmë përgjigje me hapat e radhës.',
+    },
+  ],
+
+  // Browser tab titles and meta descriptions for each page.
+  seo: {
+    home: {
+      title: 'Forest-Al | Construction, Metal Structures & Property Maintenance in Albania',
+      titleSq: 'Forest-Al | Ndërtim, Konstruksione Metalike dhe Mirëmbajtje në Shqipëri',
+      description: 'Forest-Al carries out construction works, metal structures, drywall partitions and ceilings, and electrical, plumbing, mechanical and building maintenance in Albania.',
+      descriptionSq: 'Forest-Al kryen punime ndërtimore, konstruksione metalike, ndarje dhe tavane me gips, si dhe mirëmbajtje elektrike, hidraulike, mekanike dhe ndërtimore në Shqipëri.',
+    },
+    about: {
+      title: 'About Forest-Al | Construction & Property Maintenance Company',
+      titleSq: 'Rreth Forest-Al | Kompani Ndërtimi dhe Mirëmbajtjeje',
+      description: 'Learn how Forest-Al approaches construction, renovation and property maintenance: clear scope, organised work and attention to detail.',
+      descriptionSq: 'Mësoni si punon Forest-Al në ndërtim, rinovim dhe mirëmbajtje pronash: objekt pune i qartë, punë e organizuar dhe kujdes për detajet.',
+    },
+    project: {
+      title: 'Projects | Forest-Al',
+      titleSq: 'Projektet | Forest-Al',
+      description: 'Construction, metal structure, drywall, renovation and maintenance projects by Forest-Al.',
+      descriptionSq: 'Projekte ndërtimi, konstruksionesh metalike, gipsi, rinovimi dhe mirëmbajtjeje nga Forest-Al.',
+    },
+    services: {
+      title: 'Services | Construction, Drywall & Maintenance | Forest-Al',
+      titleSq: 'Shërbimet | Ndërtim, Gips dhe Mirëmbajtje | Forest-Al',
+      description: 'Metal structures, drywall partitions and ceilings, construction works, interior renovation and electrical, plumbing, mechanical and building maintenance.',
+      descriptionSq: 'Konstruksione metalike, ndarje dhe tavane me gips, punime ndërtimore, rinovim i brendshëm dhe mirëmbajtje elektrike, hidraulike, mekanike dhe ndërtimore.',
+    },
+    areas: {
+      title: 'Service Areas | Forest-Al',
+      titleSq: 'Zonat e Shërbimit | Forest-Al',
+      description: 'Find out where Forest-Al carries out construction, renovation and maintenance work in Albania.',
+      descriptionSq: 'Mësoni ku kryen Forest-Al punime ndërtimi, rinovimi dhe mirëmbajtjeje në Shqipëri.',
+    },
+    contact: {
+      title: 'Contact Forest-Al | Request a Free Estimate',
+      titleSq: 'Kontakt Forest-Al | Kërkoni një Preventiv Falas',
+      description: 'Tell us about your construction, renovation or maintenance project and request a free estimate from Forest-Al.',
+      descriptionSq: 'Na tregoni për projektin tuaj të ndërtimit, rinovimit ose mirëmbajtjes dhe kërkoni një preventiv falas nga Forest-Al.',
+    },
+  },
+};
+
+// Form timeline options shared by the contact page and the estimate popup.
+export const timelineOptions = [
+  { value: 'As soon as possible', en: 'As soon as possible', sq: 'Sa më shpejt të jetë e mundur' },
+  { value: 'Within 1 to 3 months', en: 'Within 1 to 3 months', sq: 'Brenda 1 deri në 3 muajve' },
+  { value: 'In 3 to 6 months', en: 'In 3 to 6 months', sq: 'Pas 3 deri në 6 muajsh' },
+  { value: 'Planning and budgeting', en: 'Still planning and budgeting', sq: 'Ende në planifikim dhe buxhetim' },
+  { value: 'Ongoing maintenance', en: 'Ongoing maintenance', sq: 'Mirëmbajtje e vazhdueshme' },
+];
