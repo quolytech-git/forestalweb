@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import ReviewerIcon from './ReviewerIcon';
+import { reviews, hasOnlyExamples } from '../data/reviewsData';
 
 
 const Star5 = () => (
@@ -23,10 +24,14 @@ const Star5 = () => (
   </div>
 );
 
-// Verified client reviews go here (published only with each client's permission).
-// Each review: { quote, quoteSq, image, alt, altSq, avatar, name, nameSq, location, locationSq }.
-// The section stays hidden while this list is empty.
-const reviewsData = [];
+// Reviews come from reviewsData.js (example cards until real reviews are supplied)
+const reviewsData = reviews.map((r) => ({
+  ...r,
+  name: r.client,
+  nameSq: r.clientSq,
+  location: r.place,
+  locationSq: r.placeSq,
+}));
 
 export default function ReviewsSection({ lang = 'en' }) {
   const isSq = lang === 'sq';
@@ -49,7 +54,7 @@ export default function ReviewsSection({ lang = 'en' }) {
             </div>
             <div className="reviews-header-score">
               <Star5 />
-              <span className="reviews-score-text">{isSq ? 'Vlerësimet e verifikuara së shpejti' : 'Verified reviews coming soon'}</span>
+              <span className="reviews-score-text">{hasOnlyExamples ? (isSq ? 'Shembuj · vlerësimet e vërteta së shpejti' : 'Examples · real reviews coming soon') : isSq ? 'Vlerësime të verifikuara' : 'Verified reviews'}</span>
             </div>
           </div>
         </div>
@@ -71,6 +76,7 @@ export default function ReviewsSection({ lang = 'en' }) {
             >
               <div>
                 <Star5 />
+                {card.isExample && <span className="review-example-badge">{isSq ? 'Shembull' : 'Example'}</span>}
                 <p className="review-card-quote">{isSq ? card.quoteSq : card.quote}</p>
                 <div className="review-card-media">
                   <img
@@ -96,13 +102,13 @@ export default function ReviewsSection({ lang = 'en' }) {
         {/* 3-Column Stats Bar */}
         <div className="reviews-stats-bar">
           <div className="stats-bar-item">
-            <span className="stats-bar-text">{isSq ? 'Vetëm vlerësime të verifikuara' : 'Verified reviews only'}</span>
+            <span className="stats-bar-text">{isSq ? '15+ vite përvojë' : '15+ years of experience'}</span>
           </div>
           <div className="stats-bar-item">
-            <span className="stats-bar-text">{isSq ? 'Publikuar me lejen e klientit' : 'Published with client consent'}</span>
+            <span className="stats-bar-text">{isSq ? '100+ projekte të përfunduara' : '100+ completed projects'}</span>
           </div>
           <div className="stats-bar-item">
-            <span className="stats-bar-text">{isSq ? 'Projekte reale, klientë realë' : 'Real projects, real clients'}</span>
+            <span className="stats-bar-text">{isSq ? 'Klientë në gjithë Shqipërinë' : 'Clients across all of Albania'}</span>
           </div>
         </div>
       </div>

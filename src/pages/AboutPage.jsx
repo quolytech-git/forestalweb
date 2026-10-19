@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import ReviewerIcon from '../components/ReviewerIcon';
+import { reviews as allReviews, hasOnlyExamples } from '../data/reviewsData';
 
 // Exact Framer Vector Icons for Credentials
 const ShieldCheckIcon = () => (
@@ -191,9 +192,14 @@ export default function AboutPage({ onOpenEstimate, lang = 'en' }) {
     },
   ];
 
-  // Verified client reviews go here (published only with each client's permission).
-  // The reviews section stays hidden while this list is empty.
-  const reviews = [];
+  // Reviews come from reviewsData.js (example cards until real reviews are supplied)
+  const reviews = allReviews.map((r) => ({
+    stars: 5,
+    isExample: r.isExample,
+    quote: isSq ? r.quoteSq : r.quote,
+    name: isSq ? r.clientSq : r.client,
+    meta: isSq ? r.placeSq : r.place,
+  }));
 
   return (
     <div className="about-page-wrapper">
@@ -518,7 +524,7 @@ export default function AboutPage({ onOpenEstimate, lang = 'en' }) {
                   ))}
                 </div>
                 <div className="about-reviews-score">
-                  {isSq ? 'Vlerësimet e verifikuara së shpejti' : 'Verified reviews coming soon'}
+                  {hasOnlyExamples ? (isSq ? 'Shembuj · vlerësimet e vërteta së shpejti' : 'Examples · real reviews coming soon') : isSq ? 'Vlerësime të verifikuara' : 'Verified reviews'}
                 </div>
               </div>
             </div>
@@ -540,6 +546,7 @@ export default function AboutPage({ onOpenEstimate, lang = 'en' }) {
                       <GoldStar key={s} />
                     ))}
                   </div>
+                  {r.isExample && <span className="review-example-badge">{isSq ? 'Shembull' : 'Example'}</span>}
                 </div>
 
                 <p className="about-review-quote">{r.quote}</p>

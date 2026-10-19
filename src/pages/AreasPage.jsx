@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import ReviewerIcon from '../components/ReviewerIcon';
+import { reviews, hasOnlyExamples } from '../data/reviewsData';
 const areasHeroImg = '/gallery/lakeview-residence/1.jpg';
 
 // Where Forest-Al works
@@ -50,9 +51,17 @@ const areasData = [
   },
 ];
 
-// Verified client reviews go here (published only with each client's permission).
-// The reviews section stays hidden while this list is empty.
-const reviewsData = [];
+// Reviews come from reviewsData.js (example cards until real reviews are supplied)
+const reviewsData = reviews.map((r) => ({
+  id: r.id,
+  isExample: r.isExample,
+  quoteEn: r.quote,
+  quoteSq: r.quoteSq,
+  author: r.client,
+  authorSq: r.clientSq,
+  roleEn: r.place,
+  roleSq: r.placeSq,
+}));
 
 // SVG Pin icon matching RenovateHub
 const PinIcon = () => (
@@ -213,7 +222,7 @@ export default function AreasPage({ onOpenEstimate, onNavigate, lang = 'en' }) {
                   ))}
                 </div>
                 <div className="areas-rating-score">
-                  {isSq ? 'Vlerësimet e verifikuara së shpejti' : 'Verified reviews coming soon'}
+                  {hasOnlyExamples ? (isSq ? 'Shembuj · vlerësimet e vërteta së shpejti' : 'Examples · real reviews coming soon') : isSq ? 'Vlerësime të verifikuara' : 'Verified reviews'}
                 </div>
               </div>
             </div>
@@ -239,6 +248,7 @@ export default function AreasPage({ onOpenEstimate, onNavigate, lang = 'en' }) {
                     <span key={i} className="star-amber">★</span>
                   ))}
                 </div>
+                {rev.isExample && <span className="review-example-badge">{isSq ? 'Shembull' : 'Example'}</span>}
 
                 <p className="testimonial-card-quote">
                   {isSq ? rev.quoteSq : rev.quoteEn}
