@@ -2,49 +2,56 @@ import React, { useRef, useState, useEffect, useMemo, useCallback } from 'react'
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { siteData } from '../data/siteData';
 
-// The 7 architectural photography columns extracted directly from Bildora Framer source
+// The 7 photography columns: real buildings Forest-Al has worked on
 const BILDORA_COLUMNS = [
   {
     id: 5,
     angle: 0,
-    image: 'https://framerusercontent.com/images/g08gQShcLnWaRDc7aCIRYsWxo.jpg?width=736&height=882',
-    alt: 'European pink architectural building with white windows',
+    image: '/gallery/garden-building/14.jpg',
+    alt: 'Garden Building tower reflected in the courtyard pool',
+    altSq: 'Kulla Garden Building e pasqyruar në pishinën e oborrit',
   },
   {
     id: 6,
     angle: 30,
-    image: 'https://framerusercontent.com/images/gbfrMQ8OuM7DaGaIoR5quFax5Gk.jpg?width=682&height=923',
-    alt: 'Warm ochre and orange modern architecture with geometric balconies',
+    image: '/gallery/minepeza-building/1.jpg',
+    alt: 'Residential building on Rruga Mine Peza, Tirana',
+    altSq: 'Objekt banimi në Rrugën Mine Peza, Tiranë',
   },
   {
     id: 7,
     angle: 60,
-    image: 'https://framerusercontent.com/images/km6CGX5VeLEEoW39ZIcGbhw8nfA.jpg?width=736&height=1076',
-    alt: 'Residential townhouse facade at dusk with warm illuminated entryway',
+    image: '/gallery/garden-building/12.jpg',
+    alt: 'Garden Building facade during construction',
+    altSq: 'Fasada e Garden Building gjatë ndërtimit',
   },
   {
     id: 1,
     angle: 90,
-    image: 'https://framerusercontent.com/images/RAjSlrNzr4UegdX8R3PMn3IlgX0.jpg?width=614&height=766',
-    alt: 'Modern red brick townhouse with pitched roof and illuminated door',
+    image: '/gallery/qeparo-villas/1.jpg',
+    alt: 'Villas under construction above the bay in Qeparo',
+    altSq: 'Vila në ndërtim mbi gjirin e Qeparoit',
   },
   {
     id: 2,
     angle: 120,
-    image: 'https://framerusercontent.com/images/hljBRUPFdB1QAjBLOT2qb9hbsAI.jpg?width=736&height=981',
-    alt: 'Dramatic red geometric wooden slats against clear sky',
+    image: '/gallery/valias-residential/0.jpg',
+    alt: 'Residential complex in Valias with scaffolding',
+    altSq: 'Kompleks banimi në Valias me skela',
   },
   {
     id: 3,
     angle: 150,
-    image: 'https://framerusercontent.com/images/5e2PRqfiR0GkpyCY3atvlPSeQ.jpg?width=736&height=1308',
-    alt: 'Contemporary red architectural structure with rooftop terrace',
+    image: '/gallery/garden-building/22.jpg',
+    alt: 'Garden Building towers from the courtyard',
+    altSq: 'Kullat e Garden Building të para nga oborri',
   },
   {
     id: 4,
     angle: 180,
-    image: 'https://framerusercontent.com/images/MYmdhDGEe2D4fRHyWEaBmO1tms.jpg?width=692&height=1230',
-    alt: 'Warm terracotta building with arched balconies and staircase',
+    image: '/gallery/minepeza-building/2.jpg',
+    alt: 'Glazed ground floor of the Mine Peza building',
+    altSq: 'Kati përdhes me xham i objektit në Mine Peza',
   },
 ];
 
@@ -53,15 +60,15 @@ const STATS_EN = siteData.stats.map((s) => ({ value: s.value, label: s.label }))
 const STATS_SQ = siteData.stats.map((s) => ({ value: s.value, label: s.labelSq }));
 
 const HEADING_LINES_EN = [
-  'From metal structures and drywall systems',
-  'to construction and building maintenance,',
+  'For more than 15 years, across all of Albania,',
+  'from construction to renovation and maintenance,',
   'we plan every job and finish it properly.',
 ];
 
 const HEADING_LINES_SQ = [
-  'Nga konstruksionet metalike dhe sistemet e gipsit',
-  'te punimet ndërtimore dhe mirëmbajtja,',
-  'çdo punë e planifikojmë dhe e përfundojmë si duhet.',
+  'Mbi 15 vjet në gjithë Shqipërinë,',
+  'nga ndërtimi te rinovimi dhe mirëmbajtja,',
+  'çdo punë e bëjmë me plan dhe me kujdes.',
 ];
 
 /**
@@ -312,7 +319,7 @@ export default function BildoraShowcaseSection({ lang = 'en' }) {
               <div className="bildora-card-item bildora-card-left">
                 <img
                   src={col.image}
-                  alt={col.alt}
+                  alt={isSq ? col.altSq : col.alt}
                   loading="eager"
                   className="bildora-card-img"
                 />
@@ -322,7 +329,7 @@ export default function BildoraShowcaseSection({ lang = 'en' }) {
               <div className="bildora-card-item bildora-card-right">
                 <img
                   src={col.image}
-                  alt={col.alt}
+                  alt={isSq ? col.altSq : col.alt}
                   loading="eager"
                   className="bildora-card-img"
                 />

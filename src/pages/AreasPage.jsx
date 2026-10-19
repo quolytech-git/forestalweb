@@ -1,117 +1,58 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import areasHeroImg from '../assets/areas/areas-hero-panoramic.png';
-import reviewerPriya from '../assets/areas/reviewer-priya.png';
-import reviewerSarah from '../assets/areas/reviewer-sarah.png';
-import reviewerDaniel from '../assets/areas/reviewer-daniel.png';
-import avatar1 from '../assets/areas/avatar-1.jpg';
-import avatar2 from '../assets/areas/avatar-2.jpg';
-import avatar3 from '../assets/areas/avatar-3.png';
+import ReviewerIcon from '../components/ReviewerIcon';
+const areasHeroImg = '/gallery/lakeview-residence/1.jpg';
 
-// Placeholders until Forest-Al confirms where it works and which services are available in each area.
+// Where Forest-Al works
 const areasData = [
   {
-    id: 'area-1',
-    name: '[City / Area 1]',
-    nameSq: '[Qyteti / Zona 1]',
-    descEn: 'Services available here: [list to be confirmed].',
-    descSq: 'Shërbimet në këtë zonë: [lista për t’u konfirmuar].',
+    id: 'tirana',
+    name: 'Tirana',
+    nameSq: 'Tiranë',
+    descEn: 'The capital and our home base. Residential towers, apartments, offices and shops, from full renovations to maintenance.',
+    descSq: 'Kryeqyteti dhe baza jonë. Kulla banimi, apartamente, zyra dhe dyqane, nga rinovimi i plotë deri te mirëmbajtja.',
   },
   {
-    id: 'area-2',
-    name: '[City / Area 2]',
-    nameSq: '[Qyteti / Zona 2]',
-    descEn: 'Services available here: [list to be confirmed].',
-    descSq: 'Shërbimet në këtë zonë: [lista për t’u konfirmuar].',
+    id: 'durres',
+    name: 'Durrës',
+    nameSq: 'Durrës',
+    descEn: 'Renovation, new partitions and maintenance for homes and businesses in Durrës and along the coast.',
+    descSq: 'Rinovim, ndarje të reja dhe mirëmbajtje për banesa dhe biznese në Durrës dhe përgjatë bregdetit.',
   },
   {
-    id: 'area-3',
-    name: '[City / Area 3]',
-    nameSq: '[Qyteti / Zona 3]',
-    descEn: 'Services available here: [list to be confirmed].',
-    descSq: 'Shërbimet në këtë zonë: [lista për t’u konfirmuar].',
+    id: 'korce',
+    name: 'Korçë',
+    nameSq: 'Korçë',
+    descEn: 'Construction, renovation and finishing work in Korçë and the south-east of Albania.',
+    descSq: 'Punime ndërtimi, rinovimi dhe përfundimi në Korçë dhe në juglindje të Shqipërisë.',
   },
   {
-    id: 'area-4',
-    name: '[City / Area 4]',
-    nameSq: '[Qyteti / Zona 4]',
-    descEn: 'Services available here: [list to be confirmed].',
-    descSq: 'Shërbimet në këtë zonë: [lista për t’u konfirmuar].',
+    id: 'qeparo',
+    name: 'Qeparo',
+    nameSq: 'Qeparo',
+    descEn: 'Stone villas above the bay on the Himarë coast: interiors, installations and external works.',
+    descSq: 'Vila me gur mbi gjirin e bregdetit të Himarës: ambiente të brendshme, instalime dhe punime të jashtme.',
   },
   {
-    id: 'area-5',
-    name: '[City / Area 5]',
-    nameSq: '[Qyteti / Zona 5]',
-    descEn: 'Services available here: [list to be confirmed].',
-    descSq: 'Shërbimet në këtë zonë: [lista për t’u konfirmuar].',
+    id: 'office',
+    name: 'Our office',
+    nameSq: 'Zyra jonë',
+    descEn: 'Rruga Stavri Themeli, Tirana. Open 08:00 – 18:00. Come and see us, we are always happy to talk about your project.',
+    descSq: 'Rruga Stavri Themeli, Tiranë. E hapur 08:00 – 18:00. Ejani të na takoni, jemi gjithmonë të hapur për të diskutuar projektin tuaj.',
   },
   {
-    id: 'area-6',
-    name: '[City / Area 6]',
-    nameSq: '[Qyteti / Zona 6]',
-    descEn: 'Services available here: [list to be confirmed].',
-    descSq: 'Shërbimet në këtë zonë: [lista për t’u konfirmuar].',
-  },
-  {
-    id: 'area-7',
-    name: '[City / Area 7]',
-    nameSq: '[Qyteti / Zona 7]',
-    descEn: 'Services available here: [list to be confirmed].',
-    descSq: 'Shërbimet në këtë zonë: [lista për t’u konfirmuar].',
-  },
-  {
-    id: 'area-8',
-    name: '[City / Area 8]',
-    nameSq: '[Qyteti / Zona 8]',
-    descEn: 'Services available here: [list to be confirmed].',
-    descSq: 'Shërbimet në këtë zonë: [lista për t’u konfirmuar].',
-  },
-  {
-    id: 'area-9',
-    name: '[City / Area 9]',
-    nameSq: '[Qyteti / Zona 9]',
-    descEn: 'Services available here: [list to be confirmed].',
-    descSq: 'Shërbimet në këtë zonë: [lista për t’u konfirmuar].',
+    id: 'elsewhere',
+    name: 'All of Albania',
+    nameSq: 'Gjithë Shqipëria',
+    descEn: 'We work across the whole country. Wherever your property is, tell us about the job and we will plan the work with you.',
+    descSq: 'Punojmë në gjithë vendin. Kudo që të jetë prona juaj, na tregoni për punën dhe e planifikojmë bashkë.',
   },
 ];
 
-// Review placeholders until Forest-Al supplies verified reviews (with each client's permission).
-const reviewsData = [
-  {
-    id: 'review-1',
-    rating: 5,
-    quoteEn: '[Verified client review to be added, published only with the client’s permission.]',
-    quoteSq: '[Vlerësim i verifikuar klienti për t’u shtuar, i publikuar vetëm me lejen e klientit.]',
-    author: '[Client name]',
-    authorSq: '[Emri i klientit]',
-    roleEn: '[Location / type of work]',
-    roleSq: '[Vendndodhja / lloji i punës]',
-    avatar: reviewerPriya,
-  },
-  {
-    id: 'review-2',
-    rating: 5,
-    quoteEn: '[Verified client review to be added, published only with the client’s permission.]',
-    quoteSq: '[Vlerësim i verifikuar klienti për t’u shtuar, i publikuar vetëm me lejen e klientit.]',
-    author: '[Client name]',
-    authorSq: '[Emri i klientit]',
-    roleEn: '[Location / type of work]',
-    roleSq: '[Vendndodhja / lloji i punës]',
-    avatar: reviewerSarah,
-  },
-  {
-    id: 'review-3',
-    rating: 5,
-    quoteEn: '[Verified client review to be added, published only with the client’s permission.]',
-    quoteSq: '[Vlerësim i verifikuar klienti për t’u shtuar, i publikuar vetëm me lejen e klientit.]',
-    author: '[Client name]',
-    authorSq: '[Emri i klientit]',
-    roleEn: '[Location / type of work]',
-    roleSq: '[Vendndodhja / lloji i punës]',
-    avatar: reviewerDaniel,
-  },
-];
+// Verified client reviews go here (published only with each client's permission).
+// The reviews section stays hidden while this list is empty.
+const reviewsData = [];
 
 // SVG Pin icon matching RenovateHub
 const PinIcon = () => (
@@ -157,13 +98,13 @@ export default function AreasPage({ onOpenEstimate, onNavigate, lang = 'en' }) {
                 <h1 className="areas-hero-h1">
                   {isSq ? (
                     <>
-                      Ku punon<br />
-                      Forest-Al.
+                      Në gjithë<br />
+                      Shqipërinë.
                     </>
                   ) : (
                     <>
-                      Where Forest-Al<br />
-                      works.
+                      Across all<br />
+                      of Albania.
                     </>
                   )}
                 </h1>
@@ -177,8 +118,8 @@ export default function AreasPage({ onOpenEstimate, onNavigate, lang = 'en' }) {
               >
                 <p className="areas-hero-p">
                   {isSq
-                    ? 'Forest-Al punon në Shqipëri. Zonat e sakta të shërbimit po konfirmohen; na pyesni nëse prona juaj mbulohet dhe cilat shërbime ofrohen atje.'
-                    : 'Forest-Al works in Albania. Our exact service areas are being confirmed; ask us whether your property is covered and which services are available there.'}
+                    ? 'Punojmë në gjithë Shqipërinë. Zyra jonë është në Tiranë, kryeqytetin, dhe kemi përfunduar projekte në Tiranë, Durrës, Korçë dhe Qeparo, në banesa, vila, biznese dhe objekte të tëra banimi.'
+                    : 'We work across all of Albania. Our office is in Tirana, the capital, and we have completed projects in Tirana, Durrës, Korçë and Qeparo, on homes, villas, businesses and entire residential buildings.'}
                 </p>
 
                 <motion.button
@@ -200,7 +141,7 @@ export default function AreasPage({ onOpenEstimate, onNavigate, lang = 'en' }) {
       </section>
 
       {/* ========================================================
-          2. 3x3 LOCATION CARDS GRID (RenovateHub 1:1 Reference)
+          2. LOCATION CARDS GRID
           ======================================================== */}
       <section className="areas-grid-section">
         <div className="areas-grid-container">
@@ -245,6 +186,7 @@ export default function AreasPage({ onOpenEstimate, onNavigate, lang = 'en' }) {
       {/* ========================================================
           3. "Loved across the region." REVIEWS SECTION
           ======================================================== */}
+      {reviewsData.length > 0 && (
       <section className="areas-reviews-section">
         <div className="areas-reviews-container">
           {/* Header Row: Title & Stacked Avatars with Star Rating */}
@@ -260,9 +202,9 @@ export default function AreasPage({ onOpenEstimate, onNavigate, lang = 'en' }) {
 
             <div className="areas-rating-badge">
               <div className="areas-rating-avatars">
-                <img src={avatar1} alt="" className="areas-rating-avatar" />
-                <img src={avatar2} alt="" className="areas-rating-avatar" />
-                <img src={avatar3} alt="" className="areas-rating-avatar" />
+                <ReviewerIcon className="areas-rating-avatar" />
+                <ReviewerIcon className="areas-rating-avatar" />
+                <ReviewerIcon className="areas-rating-avatar" />
               </div>
               <div className="areas-rating-details">
                 <div className="areas-rating-stars" aria-hidden="true">
@@ -305,11 +247,7 @@ export default function AreasPage({ onOpenEstimate, onNavigate, lang = 'en' }) {
                 <div className="testimonial-card-divider" />
 
                 <div className="testimonial-card-author">
-                  <img
-                    src={rev.avatar}
-                    alt=""
-                    className="testimonial-card-avatar"
-                  />
+                  <ReviewerIcon className="testimonial-card-avatar" />
                   <div className="testimonial-card-meta">
                     <h4 className="testimonial-author-name">{isSq ? rev.authorSq : rev.author}</h4>
                     <span className="testimonial-author-role">
@@ -322,6 +260,7 @@ export default function AreasPage({ onOpenEstimate, onNavigate, lang = 'en' }) {
           </div>
         </div>
       </section>
+      )}
 
       {/* ========================================================
           4. PRE-FOOTER CTA BANNER ("In our area? Let's talk.")
@@ -342,13 +281,13 @@ export default function AreasPage({ onOpenEstimate, onNavigate, lang = 'en' }) {
               <h2 className="areas-cta-title">
                 {isSq ? (
                   <>
-                    Nuk jeni të sigurt për zonën?<br />
+                    Prona juaj është diku tjetër?<br />
                     Na pyesni.
                   </>
                 ) : (
                   <>
-                    Not sure about your area?<br />
-                    Ask us.
+                    Is your property somewhere else?<br />
+                    Just ask.
                   </>
                 )}
               </h2>
@@ -357,8 +296,8 @@ export default function AreasPage({ onOpenEstimate, onNavigate, lang = 'en' }) {
             <div className="areas-cta-right">
               <p className="areas-cta-desc">
                 {isSq
-                  ? 'Na dërgoni vendndodhjen e pronës dhe një përshkrim të shkurtër të punës. Do t’ju konfirmojmë nëse mund t’ju ndihmojmë dhe cilat shërbime ofrohen atje.'
-                  : 'Send us the location of your property and a short description of the work. We will confirm whether we can help and which services are available there.'}
+                  ? 'Na dërgoni vendndodhjen e pronës dhe një përshkrim të shkurtër të punës. Ju tregojmë shpejt nëse mund t’ju ndihmojmë.'
+                  : 'Send us the location of your property and a short description of the work. We will quickly let you know if we can help.'}
               </p>
 
               <motion.button

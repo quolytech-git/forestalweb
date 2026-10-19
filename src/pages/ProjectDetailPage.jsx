@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ChevronLeft, ChevronRight, X, ZoomIn, Star } from 'lucide-react';
 import { projectDetailsMap } from '../data/projectDetailsData';
+import useSliderFrame from '../components/useSliderFrame';
+import ReviewerIcon from '../components/ReviewerIcon';
 
 // Framer-exact chevrons icon (< >)
 const SliderChevronsIcon = () => (
@@ -48,6 +50,8 @@ const StarRating = () => (
 // Interactive Before/After Comparison Card for Related Projects
 function RelatedProjectCard({ project, onNavigate, lang }) {
   const isSq = lang === 'sq';
+  // Projects without a verified same-room pair show their finished photo only
+  const hasPair = Boolean(project.beforeImage);
   const [sliderPos, setSliderPos] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef(null);
@@ -96,8 +100,10 @@ function RelatedProjectCard({ project, onNavigate, lang }) {
       <div
         ref={containerRef}
         className="pd-related-slider-wrapper"
-        onMouseDown={handlePointerDown}
-        onTouchStart={handlePointerDown}
+        onMouseDown={hasPair ? handlePointerDown : undefined}
+        onTouchStart={hasPair ? handlePointerDown : undefined}
+        onClick={hasPair ? undefined : () => onNavigate && onNavigate('project-detail', project.slug)}
+        style={hasPair ? undefined : { cursor: 'pointer' }}
         role="slider"
         aria-valuenow={Math.round(sliderPos)}
         aria-valuemin={0}
@@ -112,6 +118,8 @@ function RelatedProjectCard({ project, onNavigate, lang }) {
           draggable="false"
         />
 
+        {hasPair && (
+        <>
         {/* Clipped Layer: Before Image */}
         <div
           style={{
@@ -135,7 +143,6 @@ function RelatedProjectCard({ project, onNavigate, lang }) {
 
         {/* Badges */}
         <div className="project-badge-before">{isSq ? 'Para' : 'Before'}</div>
-        <div className="project-badge-after">{isSq ? 'Pas' : 'After'}</div>
 
         {/* Divider Line */}
         <div className="project-slider-divider" style={{ left: `${sliderPos}%` }} />
@@ -143,6 +150,11 @@ function RelatedProjectCard({ project, onNavigate, lang }) {
         {/* Center Handle */}
         <div className="project-slider-handle" style={{ left: `${sliderPos}%` }}>
           <SliderChevronsIcon />
+        </div>
+        </>
+        )}
+        <div className="project-badge-after">
+          {hasPair ? (isSq ? 'Pas' : 'After') : isSq ? 'E përfunduar' : 'Finished'}
         </div>
       </div>
 
@@ -165,13 +177,15 @@ function RelatedProjectCard({ project, onNavigate, lang }) {
 }
 
 export default function ProjectDetailPage({
-  projectSlug = 'maple-ridge-extension',
+  projectSlug = 'garden-building',
   onOpenEstimate,
   onNavigate,
   lang = 'en',
 }) {
   const isSq = lang === 'sq';
-  const project = projectDetailsMap[projectSlug] || projectDetailsMap['maple-ridge-extension'];
+  const project = projectDetailsMap[projectSlug] || projectDetailsMap['garden-building'];
+  const heroFrame = useSliderFrame(project.beforeImage, project.afterImage);
+  const hasPair = Boolean(project.beforeImage);
 
   // Hero Before/After comparison slider state
   const [heroSliderPos, setHeroSliderPos] = useState(50);
@@ -296,12 +310,16 @@ export default function ProjectDetailPage({
           </div>
 
           {/* Large Hero Interactive Before/After Slider */}
-          <div className="pd-hero-slider-container">
+          <div className="pd-hero-slider-container" style={heroFrame ? { maxWidth: heroFrame.width } : undefined}>
             <div
               ref={heroContainerRef}
               className="pd-hero-slider"
-              onMouseDown={handleHeroPointerDown}
-              onTouchStart={handleHeroPointerDown}
+              style={{
+                ...(heroFrame ? { aspectRatio: heroFrame.aspect, minHeight: 0 } : {}),
+                ...(hasPair ? {} : { cursor: 'default' }),
+              }}
+              onMouseDown={hasPair ? handleHeroPointerDown : undefined}
+              onTouchStart={hasPair ? handleHeroPointerDown : undefined}
               role="slider"
               aria-valuenow={Math.round(heroSliderPos)}
               aria-valuemin={0}
@@ -321,6 +339,8 @@ export default function ProjectDetailPage({
                 draggable="false"
               />
 
+              {hasPair && (
+              <>
               {/* Clipped Layer: Before Image */}
               <div
                 style={{
@@ -344,7 +364,6 @@ export default function ProjectDetailPage({
 
               {/* Frosted Badges */}
               <div className="project-badge-before">{isSq ? 'Para' : 'Before'}</div>
-              <div className="project-badge-after">{isSq ? 'Pas' : 'After'}</div>
 
               {/* Divider Line */}
               <div className="project-slider-divider" style={{ left: `${heroSliderPos}%` }} />
@@ -352,6 +371,11 @@ export default function ProjectDetailPage({
               {/* Center Draggable Circular Handle with < > Chevrons */}
               <div className="project-slider-handle" style={{ left: `${heroSliderPos}%` }}>
                 <SliderChevronsIcon />
+              </div>
+              </>
+              )}
+              <div className="project-badge-after">
+                {hasPair ? (isSq ? 'Pas' : 'After') : isSq ? 'E përfunduar' : 'Finished'}
               </div>
             </div>
           </div>
@@ -389,9 +413,9 @@ export default function ProjectDetailPage({
 
               <div className="pd-details-list">
                 <div className="pd-details-row">
-                  <span className="pd-details-label">{isSq ? 'Kohëzgjatja' : 'Duration'}</span>
+                  <span className="pd-details-label">{isSq ? 'Vendndodhja' : 'Location'}</span>
                   <span className="pd-details-value">
-                    {isSq ? project.details.durationSq : project.details.duration}
+                    {isSq ? project.details.locationSq : project.details.location}
                   </span>
                 </div>
 
@@ -410,9 +434,9 @@ export default function ProjectDetailPage({
                 </div>
 
                 <div className="pd-details-row">
-                  <span className="pd-details-label">{isSq ? 'Buxheti' : 'Budget'}</span>
+                  <span className="pd-details-label">{isSq ? 'Lloji' : 'Type'}</span>
                   <span className="pd-details-value">
-                    {isSq ? project.details.budgetRangeSq : project.details.budgetRange}
+                    {isSq ? project.details.typeSq : project.details.type}
                   </span>
                 </div>
               </div>
@@ -491,6 +515,7 @@ export default function ProjectDetailPage({
       {/* ========================================================
           4. REVIEWS SECTION: "HOMEOWNERS LOVE THE RESULTS."
           ======================================================== */}
+      {project.reviews.length > 0 && (
       <section className="pd-reviews-section">
         <div className="container">
           <div className="pd-reviews-header">
@@ -503,12 +528,7 @@ export default function ProjectDetailPage({
             <div className="pd-reviews-rating-pill">
               <div className="pd-reviews-avatar-cluster">
                 {project.reviews.map((r, i) => (
-                  <img
-                    key={i}
-                    src={r.avatar}
-                    alt=""
-                    className="pd-cluster-avatar"
-                  />
+                  <ReviewerIcon key={i} className="pd-cluster-avatar" />
                 ))}
               </div>
               <div className="pd-reviews-stars-group">
@@ -538,7 +558,7 @@ export default function ProjectDetailPage({
                   {isSq ? r.quoteSq || r.quote : r.quote}
                 </blockquote>
                 <div className="pd-review-author-row">
-                  <img src={r.avatar} alt="" className="pd-review-author-avatar" />
+                  <ReviewerIcon className="pd-review-author-avatar" />
                   <div>
                     <h4 className="pd-review-author-name">{isSq ? r.nameSq || r.name : r.name}</h4>
                     <p className="pd-review-author-role">{isSq ? r.roleSq || r.role : r.role}</p>
@@ -549,6 +569,7 @@ export default function ProjectDetailPage({
           </div>
         </div>
       </section>
+      )}
 
       {/* ========================================================
           5. SEE THE TRANSFORMATION: OTHER PROJECTS

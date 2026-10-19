@@ -56,7 +56,7 @@ export default function ScrollShowcaseSection({ onOpenEstimate }) {
           {/* High-Resolution Luxury Architectural Transformation Visual */}
           <motion.img
             style={{ scale: imageScale }}
-            src="https://framerusercontent.com/images/oAiv1BWUzaADV8dwFVmRMS2DFwk.png?width=1774&height=887"
+            src="/gallery/garden-building/26.jpg"
             alt="Cinematic Architectural Space Transformation"
             className="scroll-showcase-img"
           />

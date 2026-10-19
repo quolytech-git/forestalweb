@@ -4,15 +4,10 @@ import { ArrowRight } from 'lucide-react';
 import mapImg from '../assets/areas/map.png';
 import pinIcon from '../assets/areas/pin.svg';
 
-// Placeholders until Forest-Al confirms where it works.
-const areaCities = [
-  { en: '[City / Area 1]', sq: '[Qyteti / Zona 1]' },
-  { en: '[City / Area 2]', sq: '[Qyteti / Zona 2]' },
-  { en: '[City / Area 3]', sq: '[Qyteti / Zona 3]' },
-  { en: '[City / Area 4]', sq: '[Qyteti / Zona 4]' },
-  { en: '[City / Area 5]', sq: '[Qyteti / Zona 5]' },
-  { en: '[City / Area 6]', sq: '[Qyteti / Zona 6]' },
-];
+import { siteData } from '../data/siteData';
+
+// Cities where Forest-Al has worked
+const areaCities = siteData.cities.map((c) => ({ en: c.name, sq: c.nameSq }));
 
 export default function AreasSection({ onOpenEstimate, lang = 'en' }) {
   const isSq = lang === 'sq';
@@ -47,16 +42,16 @@ export default function AreasSection({ onOpenEstimate, lang = 'en' }) {
             <div className="areas-header-block">
               <span className="areas-eyebrow">{isSq ? '// Zonat e Shërbimit' : '// Service Areas'}</span>
               <h2 className="areas-title">
-                {isSq ? 'Ku punojmë në Shqipëri.' : 'Where we work in Albania.'}
+                {isSq ? 'Punojmë në gjithë Shqipërinë.' : 'We work across all of Albania.'}
               </h2>
               <p className="areas-subtitle">
                 {isSq
-                  ? 'Forest-Al punon në Shqipëri. Zonat më poshtë janë në përditësim; na pyesni nëse prona juaj mbulohet.'
-                  : 'Forest-Al works in Albania. The areas below are being updated; ask us whether your property is covered.'}
+                  ? 'Zyra jonë është në Tiranë dhe kemi përfunduar projekte në Tiranë, Durrës, Korçë, Qeparo e më gjerë. Kudo që të jetë prona juaj, na kontaktoni.'
+                  : 'Our office is in Tirana, and we have completed projects in Tirana, Durrës, Korçë, Qeparo and beyond. Wherever your property is, get in touch.'}
               </p>
             </div>
 
-            {/* 10 Cities Pills Grid */}
+            {/* City pills */}
             <div className="areas-pills-grid">
               {areaCities.map((city, idx) => (
                 <motion.button

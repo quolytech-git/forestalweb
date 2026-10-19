@@ -1,15 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import ReviewerIcon from './ReviewerIcon';
 
-// Testimonial featured project images
-import jamesImg from '../assets/reviews/vuRAUHJGHsTdxHO7ojjPezIkY.png';
-import sarahImg from '../assets/reviews/u1wQPGGjCOZo8aJoRt7rxjDlasA.png';
-import danielImg from '../assets/reviews/ajA6aHJ2RVgPRpDP7nEftRkCvSc.png';
-
-// Client avatars
-import jamesAvatar from '../assets/reviews/lVPdv0pyB8Fd0VLiJuUQnjWY.jpg';
-import sarahAvatar from '../assets/reviews/mlVR8Tn5tLuC1d7jdA98Uq4TOg.png';
-import danielAvatar from '../assets/reviews/6el5lIqtO7xrT34XmJB0hJqVUk.png';
 
 const Star5 = () => (
   <div className="reviews-stars-row">
@@ -31,51 +23,14 @@ const Star5 = () => (
   </div>
 );
 
-// Placeholders until Forest-Al supplies verified reviews (with each client's permission).
-const reviewsData = [
-  {
-    rating: 5,
-    quote: '[Verified client review to be added, published only with the client’s permission.]',
-    quoteSq: '[Vlerësim i verifikuar klienti për t’u shtuar, i publikuar vetëm me lejen e klientit.]',
-    image: jamesImg,
-    alt: 'Project photo to be replaced with the reviewed Forest-Al project',
-    altSq: 'Foto projekti për t’u zëvendësuar me projektin e vlerësuar të Forest-Al',
-    avatar: jamesAvatar,
-    name: '[Client name]',
-    nameSq: '[Emri i klientit]',
-    location: '[Location / type of work]',
-    locationSq: '[Vendndodhja / lloji i punës]',
-  },
-  {
-    rating: 5,
-    quote: '[Verified client review to be added, published only with the client’s permission.]',
-    quoteSq: '[Vlerësim i verifikuar klienti për t’u shtuar, i publikuar vetëm me lejen e klientit.]',
-    image: sarahImg,
-    alt: 'Project photo to be replaced with the reviewed Forest-Al project',
-    altSq: 'Foto projekti për t’u zëvendësuar me projektin e vlerësuar të Forest-Al',
-    avatar: sarahAvatar,
-    name: '[Client name]',
-    nameSq: '[Emri i klientit]',
-    location: '[Location / type of work]',
-    locationSq: '[Vendndodhja / lloji i punës]',
-  },
-  {
-    rating: 5,
-    quote: '[Verified client review to be added, published only with the client’s permission.]',
-    quoteSq: '[Vlerësim i verifikuar klienti për t’u shtuar, i publikuar vetëm me lejen e klientit.]',
-    image: danielImg,
-    alt: 'Project photo to be replaced with the reviewed Forest-Al project',
-    altSq: 'Foto projekti për t’u zëvendësuar me projektin e vlerësuar të Forest-Al',
-    avatar: danielAvatar,
-    name: '[Client name]',
-    nameSq: '[Emri i klientit]',
-    location: '[Location / type of work]',
-    locationSq: '[Vendndodhja / lloji i punës]',
-  },
-];
+// Verified client reviews go here (published only with each client's permission).
+// Each review: { quote, quoteSq, image, alt, altSq, avatar, name, nameSq, location, locationSq }.
+// The section stays hidden while this list is empty.
+const reviewsData = [];
 
 export default function ReviewsSection({ lang = 'en' }) {
   const isSq = lang === 'sq';
+  if (reviewsData.length === 0) return null;
   return (
     <section id="reviews" className="renovate-reviews-section">
       <div className="container">
@@ -88,21 +43,9 @@ export default function ReviewsSection({ lang = 'en' }) {
 
           <div className="reviews-header-right">
             <div className="reviews-avatars-cluster">
-              <img
-                src={sarahAvatar}
-                alt=""
-                className="cluster-avatar"
-              />
-              <img
-                src={jamesAvatar}
-                alt=""
-                className="cluster-avatar"
-              />
-              <img
-                src={danielAvatar}
-                alt=""
-                className="cluster-avatar"
-              />
+              <ReviewerIcon className="cluster-avatar" />
+              <ReviewerIcon className="cluster-avatar" />
+              <ReviewerIcon className="cluster-avatar" />
             </div>
             <div className="reviews-header-score">
               <Star5 />
@@ -140,12 +83,7 @@ export default function ReviewsSection({ lang = 'en' }) {
               </div>
 
               <div className="review-card-client">
-                <img
-                  src={card.avatar}
-                  alt=""
-                  className="client-avatar-circle"
-                  loading="lazy"
-                />
+                <ReviewerIcon className="client-avatar-circle" />
                 <div className="client-info-col">
                   <span className="client-name-text">{isSq ? card.nameSq : card.name}</span>
                   <span className="client-location-text">{isSq ? card.locationSq : card.location}</span>
@@ -164,7 +102,7 @@ export default function ReviewsSection({ lang = 'en' }) {
             <span className="stats-bar-text">{isSq ? 'Publikuar me lejen e klientit' : 'Published with client consent'}</span>
           </div>
           <div className="stats-bar-item">
-            <span className="stats-bar-text">{isSq ? '[Platforma e vlerësimeve — për t’u konfirmuar]' : '[Review platform — to be confirmed]'}</span>
+            <span className="stats-bar-text">{isSq ? 'Projekte reale, klientë realë' : 'Real projects, real clients'}</span>
           </div>
         </div>
       </div>

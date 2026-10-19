@@ -40,7 +40,7 @@ export default function Footer({ onNavigate, onOpenEstimate, onOpenRealEstate, l
     ctaHeading: isSq ? (
       <>
         Keni një projekt<br />
-        ose një punë mirëmbajtjeje?
+        ose diçka për të rregulluar?
       </>
     ) : (
       <>
@@ -49,8 +49,8 @@ export default function Footer({ onNavigate, onOpenEstimate, onOpenRealEstate, l
       </>
     ),
     ctaSub: isSq
-      ? 'Na tregoni çfarë ju nevojitet. Do ta shohim punën, do t’ju shpjegojmë hapat e radhës dhe do t’ju përgatisim një preventiv.'
-      : 'Tell us what you need. We will look at the work, explain the next steps and prepare a quotation for you.',
+      ? 'Na tregoni çfarë ju nevojitet. Vijmë ta shohim punën, ju shpjegojmë hapat dhe ju përgatisim një preventiv.'
+      : 'Tell us what you need. We will come and look at the work, explain the steps and prepare a quote for you.',
     ctaBtn: isSq ? 'Kërkoni një Preventiv Falas' : 'Request a Free Estimate',
     contactLabel: isSq ? 'Na Kontaktoni' : 'Contact Us',
     phone: siteData.brand.phone,
@@ -62,6 +62,7 @@ export default function Footer({ onNavigate, onOpenEstimate, onOpenRealEstate, l
       { label: isSq ? 'Kryefaqja' : 'Home', action: () => handleNav('home') },
       { label: isSq ? 'Rreth Nesh' : 'About Us', action: () => handleNav('about') },
       { label: isSq ? 'Projektet' : 'Projects', action: () => handleNav('project') },
+      { label: isSq ? 'Galeria' : 'Gallery', action: () => handleNav('gallery') },
       { label: isSq ? 'Shërbimet' : 'Services', action: () => handleNav('services') },
       { label: isSq ? 'Zonat e Shërbimit' : 'Service Areas', action: () => handleNav('areas') },
       { label: isSq ? 'Na Kontaktoni' : 'Contact', action: () => handleNav('contact') },
@@ -76,15 +77,15 @@ export default function Footer({ onNavigate, onOpenEstimate, onOpenRealEstate, l
     servicePagesTitle: isSq ? 'SHËRBIMET' : 'SERVICES',
     servicePagesItems: [
       { label: isSq ? 'Konstruksione Metalike' : 'Metal Structures', action: () => handleNav('service/metal-structures') },
-      { label: isSq ? 'Ndarje dhe Tavane me Gips' : 'Drywall Partitions & Ceilings', action: () => handleNav('service/drywall-systems') },
-      { label: isSq ? 'Mirëmbajtje Ndërtimore' : 'Building Maintenance', action: () => handleNav('service/building-maintenance') },
+      { label: isSq ? 'Ndarje dhe Tavane' : 'Partitions & Ceilings', action: () => handleNav('service/drywall-systems') },
+      { label: isSq ? 'Mirëmbajtje' : 'Maintenance', action: () => handleNav('service/building-maintenance') },
       { label: isSq ? 'Pasuri të Paluajtshme ↗' : 'Real Estate ↗', action: () => (onOpenRealEstate ? onOpenRealEstate() : null) },
     ],
     socialTitle: isSq ? 'RRJETET SOCIALE' : 'SOCIAL MEDIA',
     wordmark: 'Forest-Al',
     copyright: isSq
-      ? '© 2026 FOREST-AL. TË GJITHA TË DREJTAT E REZERVUARA. · ZHVILLUAR NGA QUOLYTECH'
-      : '© 2026 FOREST-AL. ALL RIGHTS RESERVED. · DEVELOPED BY QUOLYTECH',
+      ? `© 2026 FOREST-AL · NIPT ${siteData.brand.nipt} · TË GJITHA TË DREJTAT E REZERVUARA · ZHVILLUAR NGA QUOLYTECH`
+      : `© 2026 FOREST-AL · NIPT ${siteData.brand.nipt} · ALL RIGHTS RESERVED · DEVELOPED BY QUOLYTECH`,
   };
 
   return (

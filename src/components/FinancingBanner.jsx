@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import financingBg from '../assets/reviews/ewKrYrdNDwC078u1I3pBAUbvFUY.png';
+const financingBg = '/gallery/office-fit-out/2.jpg';
 
 export default function FinancingBanner({ onOpenEstimate, lang = 'en' }) {
   const isSq = lang === 'sq';
@@ -18,7 +18,7 @@ export default function FinancingBanner({ onOpenEstimate, lang = 'en' }) {
           {/* Background Worker Image */}
           <img
             src={financingBg}
-            alt={isSq ? 'Mjeshtër duke punuar në rinovimin e një ambienti' : 'Tradesperson working on an interior renovation'}
+            alt={isSq ? 'Zyra të përfunduara nga Forest-Al' : 'Offices finished by Forest-Al'}
             className="financing-banner-bg"
             loading="lazy"
           />
@@ -29,11 +29,11 @@ export default function FinancingBanner({ onOpenEstimate, lang = 'en' }) {
           {/* Left Content Column */}
           <div className="financing-banner-content">
             <span className="financing-eyebrow">{isSq ? '// Planifikimi i Buxhetit' : '// Budget Planning'}</span>
-            <h2 className="financing-title">{isSq ? 'Dijeni koston para se të filloni.' : 'Know the costs before you start.'}</h2>
+            <h2 className="financing-title">{isSq ? 'Dijeni koston para se të nisni.' : 'Know the cost before you start.'}</h2>
             <p className="financing-desc">
               {isSq
-                ? 'Bisedojmë për buxhetin tuaj që në fillim, ju shpjegojmë çfarë ndikon në kosto dhe, kur ndihmon, e ndajmë punën në faza që t’i përshtatet planit tuaj.'
-                : 'We discuss your budget from the start, explain what affects the cost and, where it helps, split the work into stages that fit your plans.'}
+                ? 'Flasim për buxhetin tuaj që në fillim, ju shpjegojmë çfarë e ndikon koston dhe, kur ndihmon, e ndajmë punën në faza sipas mundësive tuaja.'
+                : 'We talk about your budget from the start, explain what affects the cost and, where it helps, split the work into stages that suit you.'}
             </p>
 
             <button

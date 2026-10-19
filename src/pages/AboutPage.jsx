@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import ReviewerIcon from '../components/ReviewerIcon';
 
 // Exact Framer Vector Icons for Credentials
 const ShieldCheckIcon = () => (
@@ -105,108 +106,94 @@ const GoldStar = () => (
 export default function AboutPage({ onOpenEstimate, lang = 'en' }) {
   const isSq = lang === 'sq';
 
+  // Real, checkable facts about Forest-Al
   const credentials = [
     {
       icon: <ShieldCheckIcon />,
-      title: isSq ? 'Regjistrimi i Biznesit' : 'Business Registration',
-      desc: isSq ? '[NIPT-i dhe të dhënat e regjistrimit — për t’u konfirmuar.]' : '[NIPT and registration details — to be confirmed.]',
+      title: isSq ? '15+ vite përvojë' : '15+ years of experience',
+      desc: isSq
+        ? 'Mbi 15 vjet punë dhe mbi 100 projekte të përfunduara në ndërtim, rinovim dhe mirëmbajtje.'
+        : 'More than 15 years and over 100 completed projects in construction, renovation and maintenance.',
     },
     {
       icon: <MedalIcon />,
-      title: isSq ? 'Licencat' : 'Licences',
-      desc: isSq ? '[Licencat ose kategoritë e ndërtimit që zotëron Forest-Al — për t’u konfirmuar.]' : '[Construction licences or categories held by Forest-Al — to be confirmed.]',
+      title: isSq ? 'Staf i kualifikuar' : 'Qualified staff',
+      desc: isSq
+        ? 'Mjeshtër të kualifikuar dhe me përvojë, të trajnuar në kantier për sigurinë dhe cilësinë e punës.'
+        : 'Qualified, experienced tradespeople, trained on site in safety and quality of work.',
     },
     {
       icon: <CertificateIcon />,
-      title: isSq ? 'Kualifikimet' : 'Qualifications',
-      desc: isSq ? '[Kualifikimet për punimet elektrike, hidraulike dhe mekanike — për t’u konfirmuar.]' : '[Qualifications for electrical, plumbing and mechanical work — to be confirmed.]',
+      title: isSq ? 'Kompani e regjistruar' : 'Registered company',
+      desc: isSq ? 'NIPT: M17302701E' : 'Tax ID (NIPT): M17302701E',
     },
     {
       icon: <GlobeIcon />,
-      title: isSq ? 'Sigurimi' : 'Insurance',
-      desc: isSq ? '[Mbulimi i sigurimit — për t’u konfirmuar.]' : '[Insurance cover — to be confirmed.]',
+      title: isSq ? 'Në gjithë Shqipërinë' : 'Across all of Albania',
+      desc: isSq
+        ? 'Zyra jonë është në Tiranë dhe punojmë në çdo qytet: kemi projekte në Tiranë, Durrës, Korçë dhe Qeparo.'
+        : 'Our office is in Tirana and we work in every city, with projects in Tirana, Durrës, Korçë and Qeparo.',
     },
   ];
 
-  // Team placeholders: replace names and photos with real Forest-Al team members (with their consent).
+  // Team photos are from Forest-Al sites
   const team = [
     {
-      name: isSq ? '[Emër Mbiemër]' : '[Name Surname]',
-      role: isSq ? 'Ndërtim dhe Konstruksione Metalike' : 'Construction & Metal Structures',
-      image: 'https://framerusercontent.com/images/82CL4DRDof6jznstEEYytk8ykU.png?width=600',
+      name: isSq ? 'Ekipi i ndërtimit' : 'Construction team',
+      role: isSq ? 'Konstruksione metalike dhe punime ndërtimi' : 'Metal structures and building work',
+      image: '/gallery/team-training/14.jpg',
     },
     {
-      name: isSq ? '[Emër Mbiemër]' : '[Name Surname]',
-      role: isSq ? 'Gips dhe Përfundime' : 'Drywall & Finishing',
-      image: 'https://framerusercontent.com/images/OYMeMnFoiKRceb5bM7QXUQmTzbk.png?width=600',
+      name: isSq ? 'Ekipi i përfundimeve' : 'Finishing team',
+      role: isSq ? 'Ndarje, tavane dhe përfundime' : 'Partitions, ceilings and finishing',
+      image: '/gallery/team-training/10.jpg',
     },
     {
-      name: isSq ? '[Emër Mbiemër]' : '[Name Surname]',
-      role: isSq ? 'Shërbime Mirëmbajtjeje' : 'Maintenance Services',
-      image: 'https://framerusercontent.com/images/1zY2K2RHslQJ51df7A99t1fIY.png?width=600',
+      name: isSq ? 'Ekipi i mirëmbajtjes' : 'Maintenance team',
+      role: isSq ? 'Punime elektrike, hidraulike dhe mekanike' : 'Electrical, plumbing and mechanical work',
+      image: '/gallery/team-training/12.jpg',
     },
     {
-      name: isSq ? '[Emër Mbiemër]' : '[Name Surname]',
-      role: isSq ? 'Komunikimi me Klientët' : 'Client Communication',
-      image: 'https://framerusercontent.com/images/8IpOyde2K3YaYfBJnRJfIrHtd60.png?width=600',
+      name: isSq ? 'Drejtimi i kantierit' : 'Site supervision',
+      role: isSq ? 'Planifikimi dhe komunikimi me klientin' : 'Planning and client communication',
+      image: '/gallery/team-training/8.jpg',
     },
   ];
 
   const trustTimeline = [
     {
       icon: <ClipboardCheckIcon />,
-      title: isSq ? 'Objekt pune i qartë.' : 'A clear scope before we start.',
+      title: isSq ? 'Marrëveshje e qartë para fillimit.' : 'A clear agreement before we start.',
       desc: isSq
-        ? 'Biem dakord për çfarë do të bëhet, me çfarë materialesh dhe me çfarë radhe, para se të fillojë puna.'
-        : 'We agree what will be done, with which materials and in what order, before any work begins.',
+        ? 'Para se të nisim, biem dakord se çfarë do të bëhet, me cilat materiale dhe me çfarë radhe.'
+        : 'Before we begin, we agree what will be done, with which materials and in what order.',
     },
     {
       icon: <HandshakeIcon />,
-      title: isSq ? 'Një ekip, disa fusha pune.' : 'One team, several trades.',
+      title: isSq ? 'Një ekip për disa zanate.' : 'One team, several trades.',
       desc: isSq
-        ? 'Ndërtimi, gipsi dhe mirëmbajtja kryhen nga i njëjti ekip, që punët të lidhen mirë me njëra-tjetrën.'
-        : 'Construction, drywall and maintenance are handled by the same team, so the work fits together.',
+        ? 'Ndërtimin, rinovimin dhe mirëmbajtjen i bën i njëjti ekip, ndaj punët lidhen mirë me njëra-tjetrën.'
+        : 'Construction, renovation and maintenance are handled by the same team, so everything fits together.',
     },
     {
       icon: <ReceiptIcon />,
-      title: isSq ? 'Preventiv sipas punës reale.' : 'Quotations based on the actual work.',
+      title: isSq ? 'Preventiv sipas punës reale.' : 'A quote based on the real work.',
       desc: isSq
-        ? 'Çmimin e japim pasi kuptojmë punën, dhe ju shpjegojmë çfarë përfshihet në të.'
-        : 'We price the job once we understand it, and explain what the quotation includes.',
+        ? 'Çmimin e japim pasi e kuptojmë punën, dhe ju shpjegojmë qartë çfarë përfshin.'
+        : 'We price the job once we understand it, and explain clearly what the quote includes.',
     },
     {
       icon: <ShieldCleanIcon />,
       title: isSq ? 'Respekt për pronën tuaj.' : 'Respect for your property.',
       desc: isSq
-        ? 'Mbrojmë zonat ku punojmë, e mbajmë kantierin të rregullt dhe e lëmë ambientin të pastër.'
-        : 'We protect the areas we work in, keep the site tidy and leave the space clean.',
+        ? 'Mbrojmë ambientet ku punojmë, e mbajmë kantierin të rregullt dhe e lëmë vendin të pastër.'
+        : 'We protect the areas we work in, keep the site tidy and leave the place clean.',
     },
   ];
 
-  // Review placeholders until Forest-Al supplies verified reviews (with each client's permission).
-  const reviews = [
-    {
-      stars: 5,
-      quote: isSq ? '[Vlerësim i verifikuar klienti për t’u shtuar, i publikuar vetëm me lejen e klientit.]' : '[Verified client review to be added, published only with the client’s permission.]',
-      name: isSq ? '[Emri i klientit]' : '[Client name]',
-      meta: isSq ? '[Vendndodhja / lloji i punës]' : '[Location / type of work]',
-      avatar: 'https://framerusercontent.com/images/wWs7pops9JNLjD9lxYQLOMbqDMw.png?width=150&height=150',
-    },
-    {
-      stars: 5,
-      quote: isSq ? '[Vlerësim i verifikuar klienti për t’u shtuar, i publikuar vetëm me lejen e klientit.]' : '[Verified client review to be added, published only with the client’s permission.]',
-      name: isSq ? '[Emri i klientit]' : '[Client name]',
-      meta: isSq ? '[Vendndodhja / lloji i punës]' : '[Location / type of work]',
-      avatar: 'https://framerusercontent.com/images/ieg3GvFPHfhg2GSuRRpo0z4tnE.png?width=150&height=150',
-    },
-    {
-      stars: 5,
-      quote: isSq ? '[Vlerësim i verifikuar klienti për t’u shtuar, i publikuar vetëm me lejen e klientit.]' : '[Verified client review to be added, published only with the client’s permission.]',
-      name: isSq ? '[Emri i klientit]' : '[Client name]',
-      meta: isSq ? '[Vendndodhja / lloji i punës]' : '[Location / type of work]',
-      avatar: 'https://framerusercontent.com/images/RekeT62yXkhsxSsRJeja7ru4eM.png?width=150&height=150',
-    },
-  ];
+  // Verified client reviews go here (published only with each client's permission).
+  // The reviews section stays hidden while this list is empty.
+  const reviews = [];
 
   return (
     <div className="about-page-wrapper">
@@ -216,7 +203,7 @@ export default function AboutPage({ onOpenEstimate, lang = 'en' }) {
       <section className="about-hero-section">
         <div className="about-hero-card">
           <img
-            src="https://framerusercontent.com/images/6B0WaHhRjTKJ4lktYRNZV3Yg.png?width=1920"
+            src="/gallery/team-training/9.jpg"
             alt={isSq ? 'Ekipi i Forest-Al në punë' : 'Forest-Al at work'}
             className="about-hero-bg"
           />
@@ -236,7 +223,7 @@ export default function AboutPage({ onOpenEstimate, lang = 'en' }) {
                   {isSq ? (
                     <>
                       Ndërtim dhe mirëmbajtje,<br />
-                      të kryera me kujdes.
+                      bërë me kujdes.
                     </>
                   ) : (
                     <>
@@ -255,8 +242,8 @@ export default function AboutPage({ onOpenEstimate, lang = 'en' }) {
               >
                 <p className="about-hero-p">
                   {isSq
-                    ? 'Forest-Al është një kompani ndërtimi dhe mirëmbajtjeje pronash në Shqipëri. Punojmë me konstruksione metalike dhe pllaka gipsi, dhe kujdesemi për mirëmbajtjen elektrike, hidraulike, mekanike dhe ndërtimore të çdo lloj aseti.'
-                    : 'Forest-Al is a construction and property maintenance company in Albania. We work with metal structures and drywall systems, and look after the electrical, plumbing, mechanical and building maintenance of every type of property.'}
+                    ? 'Forest-Al është kompani ndërtimi dhe mirëmbajtjeje me mbi 15 vjet përvojë në Shqipëri. Me staf të kualifikuar, ndërtojmë, rinovojmë dhe kujdesemi për mirëmbajtjen e çdo prone, në gjithë Shqipërinë.'
+                    : 'Forest-Al is a construction and maintenance company with more than 15 years of experience in Albania. With qualified staff, we build, renovate and look after every kind of property, across all of Albania.'}
                 </p>
 
                 <motion.button
@@ -296,17 +283,17 @@ export default function AboutPage({ onOpenEstimate, lang = 'en' }) {
               <h2 className="about-story-title">{isSq ? 'Kush jemi.' : 'Who we are.'}</h2>
               <p className="about-story-text">
                 {isSq
-                  ? 'Forest-Al kryen punime në fushën e ndërtimit me konstruksione metalike dhe veshje me pllaka gipsi. Ofrojmë gjithashtu shërbime dhe punime për çdo lloj aseti, përfshirë mirëmbajtjen elektrike, hidraulike, mekanike dhe ndërtimore. [Viti i themelimit dhe historia e kompanisë — për t’u konfirmuar.]'
-                  : 'Forest-Al carries out construction work with metal structures and plasterboard (drywall) linings. We also provide services and works for every type of asset, including electrical, plumbing, mechanical and building maintenance. [Founding year and company history — to be confirmed.]'}
+                  ? 'Forest-Al është kompani ndërtimi dhe mirëmbajtjeje me mbi 15 vjet përvojë. Punojmë në gjithë Shqipërinë dhe kemi përfunduar mbi 100 projekte, nga apartamente dhe vila deri te zyra, restorante dhe objekte të tëra banimi. Na gjeni në zyrën tonë në Tiranë, të hapur çdo ditë pune nga ora 08:00 deri në 18:00.'
+                  : 'Forest-Al is a construction and maintenance company with more than 15 years of experience. We work across all of Albania and have completed over 100 projects, from apartments and villas to offices, restaurants and entire residential buildings. You can find us at our office in Tirana, open 08:00 to 18:00.'}
               </p>
               <p className="about-story-text">
                 {isSq ? (
                   <>
-                    Misioni ynë është t’i ndihmojmë pronarët të planifikojnë dhe të kryejnë punën që kërkojnë objektet e tyre, me <strong>komunikim të qartë</strong> dhe <strong>punë të kujdesshme</strong>, sipas objektit, buxhetit dhe afateve të rëna dakord.
+                    Qëllimi ynë është i thjeshtë: ta bëjmë punën ashtu siç është rënë dakord, me <strong>komunikim të qartë</strong> dhe <strong>punë të kujdesshme</strong>, duke respektuar buxhetin dhe afatet.
                   </>
                 ) : (
                   <>
-                    Our mission is to help property owners plan and carry out the work their buildings need, with <strong>clear communication</strong> and <strong>careful workmanship</strong>, while respecting the agreed scope, budget and timeline.
+                    Our aim is simple: do the work exactly as agreed, with <strong>clear communication</strong> and <strong>careful workmanship</strong>, while respecting the budget and the timeline.
                   </>
                 )}
               </p>
@@ -322,7 +309,7 @@ export default function AboutPage({ onOpenEstimate, lang = 'en' }) {
             >
               <div className="about-founder-photo-wrap">
                 <img
-                  src="https://framerusercontent.com/images/82CL4DRDof6jznstEEYytk8ykU.png?width=600"
+                  src="/gallery/lakeview-residence/9.jpg"
                   alt={isSq ? 'Ekipi i Forest-Al' : 'The Forest-Al team'}
                   className="about-founder-photo"
                 />
@@ -337,18 +324,18 @@ export default function AboutPage({ onOpenEstimate, lang = 'en' }) {
               <div className="about-founder-body">
                 <p className="about-founder-quote">
                   {isSq
-                    ? 'Çdo projekt fillon me kuptimin e pronës dhe me rënien dakord për një objekt pune të qartë. Prej aty planifikojmë hapat, ju mbajmë të informuar dhe e përfundojmë punën si duhet. [Mesazh nga themeluesi ose drejtuesi — opsional, për t’u shtuar nga Forest-Al.]'
-                    : 'Every project starts with understanding the property and agreeing a clear scope of work. From there, we plan the steps, keep you informed and finish the job properly. [Message from the founder or manager — optional, to be added by Forest-Al.]'}
+                    ? 'Çdo projekt fillon duke e parë pronën nga afër dhe duke rënë dakord se çfarë do të bëhet. Pastaj planifikojmë hapat, ju mbajmë të informuar dhe e mbarojmë punën si duhet.'
+                    : 'Every project starts with a proper look at the property and a clear agreement on what will be done. Then we plan the steps, keep you informed and finish the job properly.'}
                 </p>
 
                 <div className="about-founder-stats">
                   <div className="about-stat-col">
-                    <div className="about-stat-val">9</div>
-                    <div className="about-stat-lbl">{isSq ? 'Shërbime' : 'Services'}</div>
+                    <div className="about-stat-val">15+</div>
+                    <div className="about-stat-lbl">{isSq ? 'Vite përvojë' : 'Years of experience'}</div>
                   </div>
                   <div className="about-stat-col">
-                    <div className="about-stat-val">3</div>
-                    <div className="about-stat-lbl">{isSq ? 'Fusha pune' : 'Areas of work'}</div>
+                    <div className="about-stat-val">100+</div>
+                    <div className="about-stat-lbl">{isSq ? 'Projekte të përfunduara' : 'Completed projects'}</div>
                   </div>
                 </div>
               </div>
@@ -370,9 +357,9 @@ export default function AboutPage({ onOpenEstimate, lang = 'en' }) {
             className="about-credentials-box"
           >
             <div className="about-credentials-header">
-              <div className="about-credentials-tag">{isSq ? '// Kualifikimet //' : '// Credentials //'}</div>
+              <div className="about-credentials-tag">{isSq ? '// Përvoja //' : '// Experience //'}</div>
               <h2 className="about-credentials-title">
-                {isSq ? 'Kualifikimet dhe dokumentacioni.' : 'Credentials and qualifications.'}
+                {isSq ? 'Përvojë që duket në punë.' : 'Experience you can see in the work.'}
               </h2>
             </div>
 
@@ -402,8 +389,8 @@ export default function AboutPage({ onOpenEstimate, lang = 'en' }) {
             </div>
             <p className="about-team-intro">
               {isSq
-                ? 'Ekipi ynë bashkon aftësi në ndërtim, gips dhe mirëmbajtje, që çdo punë të kryhet nga njerëz që e njohin fushën. [Emrat, rolet dhe fotot e ekipit — për t’u dhënë nga Forest-Al.]'
-                : 'Our team brings together construction, drywall and maintenance skills, so each job is done by people who know the trade. [Team names, roles and photos — to be provided by Forest-Al.]'}
+                ? 'Stafi ynë i kualifikuar bashkon mjeshtër ndërtimi, përfundimesh dhe mirëmbajtjeje. Kështu, çdo punë e bëjnë njerëz që e njohin mirë zanatin.'
+                : 'Our qualified staff brings together builders, finishing specialists and maintenance technicians, so every job is done by people who know the trade.'}
             </p>
           </div>
 
@@ -420,7 +407,6 @@ export default function AboutPage({ onOpenEstimate, lang = 'en' }) {
                 <img src={member.image} alt={member.name} className="about-team-img" />
                 <div className="about-team-overlay">
                   <div className="about-team-name">{member.name}</div>
-                  <div className="about-team-role">{member.role}</div>
                 </div>
               </motion.div>
             ))}
@@ -460,14 +446,14 @@ export default function AboutPage({ onOpenEstimate, lang = 'en' }) {
 
                 <div className="about-trust-photo-card">
                   <img
-                    src="https://framerusercontent.com/images/orXrl6xfc1nYs37rFZqagf6nGI.png?width=800"
-                    alt={isSq ? 'Klient dhe kontraktor duke shtrënguar duart' : 'Client and contractor shaking hands'}
+                    src="/gallery/high-rise-apartment/57.jpg"
+                    alt={isSq ? 'Kontroll i planit me klientin në kantier' : 'Checking the plan with the client on site'}
                     className="about-trust-photo"
                   />
                   <div className="about-trust-rating-pill">
-                    <div className="about-trust-rating-score">6</div>
+                    <div className="about-trust-rating-score">100+</div>
                     <div className="about-trust-rating-label">
-                      {isSq ? 'Hapa nga konsulta te dorëzimi' : 'Steps from consultation to handover'}
+                      {isSq ? 'Projekte të përfunduara' : 'Completed projects'}
                     </div>
                   </div>
                 </div>
@@ -502,6 +488,7 @@ export default function AboutPage({ onOpenEstimate, lang = 'en' }) {
       {/* ========================================================
           6. REVIEWS SECTION ("Homeowners love the results.")
           ======================================================== */}
+      {reviews.length > 0 && (
       <section className="about-reviews-section">
         <div className="container">
           <div className="about-reviews-header">
@@ -515,13 +502,13 @@ export default function AboutPage({ onOpenEstimate, lang = 'en' }) {
             <div className="about-reviews-badge">
               <div className="about-reviews-avatars">
                 <div className="about-reviews-avatar-circle">
-                  <img src="https://framerusercontent.com/images/wWs7pops9JNLjD9lxYQLOMbqDMw.png?width=50&height=50" alt="" />
+                  <ReviewerIcon size={14} />
                 </div>
                 <div className="about-reviews-avatar-circle">
-                  <img src="https://framerusercontent.com/images/ieg3GvFPHfhg2GSuRRpo0z4tnE.png?width=50&height=50" alt="" />
+                  <ReviewerIcon size={14} />
                 </div>
                 <div className="about-reviews-avatar-circle">
-                  <img src="https://framerusercontent.com/images/RekeT62yXkhsxSsRJeja7ru4eM.png?width=50&height=50" alt="" />
+                  <ReviewerIcon size={14} />
                 </div>
               </div>
               <div className="about-reviews-stars-wrap">
@@ -558,7 +545,7 @@ export default function AboutPage({ onOpenEstimate, lang = 'en' }) {
                 <p className="about-review-quote">{r.quote}</p>
 
                 <div className="about-review-author">
-                  <img src={r.avatar} alt="" className="about-review-author-img" />
+                  <ReviewerIcon className="about-review-author-img" />
                   <div className="about-review-author-info">
                     <div className="about-review-author-name">{r.name}</div>
                     <div className="about-review-author-meta">{r.meta}</div>
@@ -569,6 +556,7 @@ export default function AboutPage({ onOpenEstimate, lang = 'en' }) {
           </div>
         </div>
       </section>
+      )}
 
       {/* ========================================================
           7. PRE-FOOTER CTA CARD ("Ready to transform your home?")
@@ -587,12 +575,12 @@ export default function AboutPage({ onOpenEstimate, lang = 'en' }) {
               <h2 className="about-cta-title">
                 {isSq ? (
                   <>
-                    Gati të diskutoni<br />
+                    Gati të flasim për<br />
                     projektin tuaj?
                   </>
                 ) : (
                   <>
-                    Ready to discuss<br />
+                    Ready to talk about<br />
                     your project?
                   </>
                 )}
@@ -602,8 +590,8 @@ export default function AboutPage({ onOpenEstimate, lang = 'en' }) {
             <div className="about-cta-right">
               <p className="about-cta-desc">
                 {isSq
-                  ? 'Na tregoni çfarë i nevojitet pronës suaj. Do ta shohim punën, do t’ju shpjegojmë hapat e radhës dhe do t’ju përgatisim një preventiv.'
-                  : 'Tell us what your property needs. We will look at the work, explain the next steps and prepare a quotation for you.'}
+                  ? 'Na tregoni çfarë ju nevojitet. Vijmë ta shohim punën, ju shpjegojmë hapat dhe ju përgatisim një preventiv.'
+                  : 'Tell us what you need. We will come and look at the work, explain the steps and prepare a quote for you.'}
               </p>
 
               <motion.button
@@ -621,7 +609,7 @@ export default function AboutPage({ onOpenEstimate, lang = 'en' }) {
 
               <div className="about-cta-sub">
                 {isSq
-                  ? 'Konsultë falas • Pa detyrime • Hapa të qartë'
+                  ? 'Konsultë falas • Pa asnjë detyrim • Hapa të qartë'
                   : 'Free consultation • No obligation • Clear next steps'}
               </div>
             </div>

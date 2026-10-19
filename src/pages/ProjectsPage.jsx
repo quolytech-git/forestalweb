@@ -59,6 +59,8 @@ const cardVariants = {
 // Individual Project Card with Interactive Before/After Comparison Slider
 function ProjectComparisonCard({ project, onOpenEstimate, onNavigate, lang = 'en' }) {
   const isSq = lang === 'sq';
+  // Projects without a verified same-room pair show their finished photo only
+  const hasPair = Boolean(project.beforeImage);
   const [sliderPos, setSliderPos] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef(null);
@@ -113,8 +115,10 @@ function ProjectComparisonCard({ project, onOpenEstimate, onNavigate, lang = 'en
       <div
         ref={containerRef}
         className="project-slider-wrapper"
-        onMouseDown={handlePointerDown}
-        onTouchStart={handlePointerDown}
+        onMouseDown={hasPair ? handlePointerDown : undefined}
+        onTouchStart={hasPair ? handlePointerDown : undefined}
+        onClick={hasPair ? undefined : () => onNavigate && onNavigate('project-detail', project.slug)}
+        style={hasPair ? undefined : { cursor: 'pointer' }}
         role="slider"
         aria-valuenow={Math.round(sliderPos)}
         aria-valuemin={0}
@@ -129,6 +133,8 @@ function ProjectComparisonCard({ project, onOpenEstimate, onNavigate, lang = 'en
           draggable="false"
         />
 
+        {hasPair && (
+        <>
         {/* Top Clipped Layer: Before Image */}
         <div
           style={{
@@ -152,7 +158,6 @@ function ProjectComparisonCard({ project, onOpenEstimate, onNavigate, lang = 'en
 
         {/* Floating Badges */}
         <div className="project-badge-before">{isSq ? 'Para' : 'Before'}</div>
-        <div className="project-badge-after">{isSq ? 'Pas' : 'After'}</div>
 
         {/* Draggable Divider Line */}
         <div className="project-slider-divider" style={{ left: `${sliderPos}%` }} />
@@ -160,6 +165,11 @@ function ProjectComparisonCard({ project, onOpenEstimate, onNavigate, lang = 'en
         {/* Draggable Center Handle Circle with < > Chevrons */}
         <div className="project-slider-handle" style={{ left: `${sliderPos}%` }}>
           <SliderChevronsIcon />
+        </div>
+        </>
+        )}
+        <div className="project-badge-after">
+          {hasPair ? (isSq ? 'Pas' : 'After') : isSq ? 'E përfunduar' : 'Finished'}
         </div>
       </div>
 
@@ -186,17 +196,17 @@ export default function ProjectsPage({ onOpenEstimate, onNavigate, lang = 'en' }
   const isSq = lang === 'sq';
   const [activeFilter, setActiveFilter] = useState('All');
 
-  // Project placeholders (see projectDetailsData.js) until verified Forest-Al projects are added
+  // Real Forest-Al projects (see projectDetailsData.js and galleryData.js)
   const projectsData = projectsList.map((p, i) => ({ ...p, id: i + 1 }));
 
   const filterTabs = [
     { key: 'All', labelEn: 'All', labelSq: 'Të Gjitha' },
-    { key: 'Metal Structures', labelEn: 'Metal Structures', labelSq: 'Konstruksione Metalike' },
-    { key: 'Drywall Systems', labelEn: 'Drywall Systems', labelSq: 'Sisteme Gipsi' },
-    { key: 'Interior Renovation', labelEn: 'Renovation', labelSq: 'Rinovim' },
-    { key: 'Construction Works', labelEn: 'Construction', labelSq: 'Ndërtim' },
-    { key: 'Maintenance', labelEn: 'Maintenance', labelSq: 'Mirëmbajtje' },
-  ];
+    { key: 'Construction', labelEn: 'Construction', labelSq: 'Ndërtim' },
+    { key: 'Renovation', labelEn: 'Renovation', labelSq: 'Rinovim' },
+    { key: 'Partitions & Ceilings', labelEn: 'Partitions & Ceilings', labelSq: 'Ndarje dhe Tavane' },
+  ].filter(
+    (tab) => tab.key === 'All' || projectsData.some((p) => p.category.toLowerCase() === tab.key.toLowerCase())
+  );
 
   const filteredProjects =
     activeFilter === 'All'
@@ -213,7 +223,7 @@ export default function ProjectsPage({ onOpenEstimate, onNavigate, lang = 'en' }
       <section className="projects-hero-section">
         <div className="projects-hero-card">
           <img
-            src="https://framerusercontent.com/images/DlFjmEB6RQvEm2eq1kdVsFggUg.png?width=1920"
+            src="/gallery/garden-building/14.jpg"
             alt={isSq ? 'Projektet e Forest-Al' : 'Forest-Al projects'}
             className="projects-hero-bg"
           />
@@ -252,8 +262,8 @@ export default function ProjectsPage({ onOpenEstimate, onNavigate, lang = 'en' }
               >
                 <p className="projects-hero-p">
                   {isSq
-                    ? 'Projekte me konstruksione metalike, gips, rinovim dhe mirëmbajtje. Lëvizni rrëshqitësin për të krahasuar para dhe pas. Projektet e verifikuara të Forest-Al do të shtohen këtu.'
-                    : 'Metal structure, drywall, renovation and maintenance projects. Drag any slider to compare before and after. Verified Forest-Al projects will be added here.'}
+                    ? 'Objekte, apartamente dhe biznese të realizuara nga ekipi i Forest-Al. Lëvizni rrëshqitësin për të krahasuar para dhe pas.'
+                    : 'Buildings, apartments and businesses delivered by the Forest-Al team. Drag any slider to compare before and after.'}
                 </p>
 
                 <motion.button

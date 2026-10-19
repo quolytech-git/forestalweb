@@ -57,7 +57,7 @@ export default function ServicesPage({ onOpenEstimate, onNavigate, lang = 'en' }
       <section className="services-hero-section">
         <div className="services-hero-card">
           <img
-            src="https://framerusercontent.com/images/dMw4ivm3oSohk6Vu8h5VzN01Y5g.png"
+            src="/gallery/lakeview-residence/45.jpg"
             alt={isSq ? 'Shërbimet e Forest-Al' : 'Forest-Al services'}
             className="services-hero-bg"
             loading="eager"
@@ -90,8 +90,8 @@ export default function ServicesPage({ onOpenEstimate, onNavigate, lang = 'en' }
               >
                 <p className="services-hero-p">
                   {isSq
-                    ? 'Nga konstruksionet metalike dhe sistemet e gipsit deri te mirëmbajtja elektrike, hidraulike dhe mekanike. Shikoni çfarë bëjmë dhe kërkoni një preventiv për punën tuaj.'
-                    : 'From metal structures and drywall systems to electrical, plumbing and mechanical maintenance. See what we do, then request a quotation for your work.'}
+                    ? 'Nga ndërtimi dhe rinovimi deri te punimet elektrike, hidraulike dhe mekanike, në gjithë Shqipërinë. Shikoni çfarë bëjmë dhe kërkoni një preventiv për punën tuaj.'
+                    : 'From construction and renovation to electrical, plumbing and mechanical work, across all of Albania. See what we do, then ask for a quote for your job.'}
                 </p>
 
                 <motion.button

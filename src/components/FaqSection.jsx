@@ -19,8 +19,8 @@ export default function FaqSection({ lang = 'en' }) {
           <h2>{isSq ? 'Pyetje dhe përgjigje.' : 'Questions, answered.'}</h2>
           <p>
             {isSq
-              ? 'Përgjigje të përgjithshme për kostot, kohëzgjatjen, lejet, mirëmbajtjen dhe si të na kontaktoni.'
-              : 'General answers about costs, timing, permits, maintenance and how to get in touch.'}
+              ? 'Përgjigje të shkurtra për çmimin, kohën, lejet, mirëmbajtjen dhe si të na kontaktoni.'
+              : 'Short answers about price, timing, permits, maintenance and how to reach us.'}
           </p>
         </div>
 

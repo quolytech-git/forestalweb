@@ -20,9 +20,10 @@ export default function Navbar({ activePage, setActivePage, onOpenEstimate, lang
   const isSq = lang === 'sq';
 
   const navLinks = [
-    { id: 'home', label: isSq ? 'Kreu' : 'Home' },
+    { id: 'home', label: isSq ? 'Kryefaqja' : 'Home' },
     { id: 'about', label: isSq ? 'Rreth Nesh' : 'About' },
     { id: 'project', label: isSq ? 'Projektet' : 'Projects' },
+    { id: 'gallery', label: isSq ? 'Galeria' : 'Gallery' },
     { id: 'services', label: isSq ? 'Shërbimet' : 'Services' },
     { id: 'areas', label: isSq ? 'Zonat' : 'Areas' },
   ];
@@ -101,8 +102,8 @@ export default function Navbar({ activePage, setActivePage, onOpenEstimate, lang
             >
               <Globe size={15} strokeWidth={2.3} className="nav-lang-globe-icon" />
               <div className="nav-lang-segmented">
-                <span className={`nav-lang-badge ${!isSq ? 'active' : ''}`}>EN</span>
                 <span className={`nav-lang-badge ${isSq ? 'active' : ''}`}>SQ</span>
+                <span className={`nav-lang-badge ${!isSq ? 'active' : ''}`}>EN</span>
               </div>
             </motion.button>
 
@@ -153,7 +154,7 @@ export default function Navbar({ activePage, setActivePage, onOpenEstimate, lang
             >
               {/* Language Switcher inside Mobile Drawer */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', paddingBottom: '12px', borderBottom: '1px solid rgba(26,26,23,0.1)' }}>
-                <span style={{ fontSize: '14px', color: 'var(--text-dark, #1a1a17)', fontWeight: 700 }}>{isSq ? 'Zgjidh Gjuhën:' : 'Language:'}</span>
+                <span style={{ fontSize: '14px', color: 'var(--text-dark, #1a1a17)', fontWeight: 700 }}>{isSq ? 'Gjuha:' : 'Language:'}</span>
                 <button
                   type="button"
                   onClick={handleToggle}
@@ -161,8 +162,8 @@ export default function Navbar({ activePage, setActivePage, onOpenEstimate, lang
                 >
                   <Globe size={15} strokeWidth={2.3} className="nav-lang-globe-icon" />
                   <div className="nav-lang-segmented">
-                    <span className={`nav-lang-badge ${!isSq ? 'active' : ''}`}>EN</span>
                     <span className={`nav-lang-badge ${isSq ? 'active' : ''}`}>SQ</span>
+                    <span className={`nav-lang-badge ${!isSq ? 'active' : ''}`}>EN</span>
                   </div>
                 </button>
               </div>

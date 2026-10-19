@@ -84,8 +84,8 @@ export default function RealEstateRedirectPop({ lang = 'en', forceOpen = false, 
 
             <p className="re-redirect-text">
               {isSq
-                ? 'Kërkoni një pronë për ta blerë ose për ta marrë me qira? Shpalljet e pasurive të paluajtshme ndodhen në një platformë të veçantë. [Emri dhe lidhja e platformës — për t’u konfirmuar.]'
-                : 'Looking for a property to buy or rent? Real estate listings are on a separate platform. [Platform name and link — to be confirmed.]'}
+                ? 'Kërkoni një pronë për ta blerë ose për ta marrë me qira? Shpalljet tona të pronave do të jenë në një platformë të veçantë.'
+                : 'Looking for a property to buy or rent? Our property listings will be on a separate platform.'}
             </p>
 
             {/* Dummy Redirect Button */}

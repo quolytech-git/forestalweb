@@ -44,11 +44,11 @@ export default function ServicesSection({ onSelectService, onNavigate, lang = 'e
             <p className="services-subtitle">
               {isSq ? (
                 <>
-                  Nga skeletet metalike dhe ndarjet me gips deri te mirëmbajtja e përditshme,<br className="services-subtitle-br" /> ju ndihmojmë të planifikoni dhe të kryeni punën që kërkon prona juaj.
+                  Nga ndërtimi dhe rinovimi deri te mirëmbajtja e përditshme,<br className="services-subtitle-br" /> bëjmë punën që i nevojitet pronës suaj, nga fillimi deri në fund.
                 </>
               ) : (
                 <>
-                  From metal frameworks and drywall partitions to everyday maintenance,<br className="services-subtitle-br" /> we help you plan and carry out the work your property needs.
+                  From construction and renovation to everyday maintenance,<br className="services-subtitle-br" /> we do the work your property needs, from start to finish.
                 </>
               )}
             </p>

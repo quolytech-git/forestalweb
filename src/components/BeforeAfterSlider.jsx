@@ -1,12 +1,14 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronsLeftRight, ArrowRight } from 'lucide-react';
-import { siteData } from '../data/siteData';
+import { projectsList } from '../data/projectDetailsData';
 
 // Single interactive Before/After comparison card component
 function BeforeAfterCard({ item, index, onSelectProject, lang = 'en' }) {
   const isSq = lang === 'sq';
   const title = isSq ? item.titleSq : item.title;
+  // Projects without a verified same-room pair show their finished photo only
+  const hasPair = Boolean(item.beforeImage);
   const [sliderPos, setSliderPos] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef(null);
@@ -62,8 +64,10 @@ function BeforeAfterCard({ item, index, onSelectProject, lang = 'en' }) {
       <div
         ref={containerRef}
         className="ba-card-slider"
-        onMouseDown={handlePointerDown}
-        onTouchStart={handlePointerDown}
+        onMouseDown={hasPair ? handlePointerDown : undefined}
+        onTouchStart={hasPair ? handlePointerDown : undefined}
+        onClick={hasPair ? undefined : () => onSelectProject && onSelectProject(item.id)}
+        style={hasPair ? undefined : { cursor: 'pointer' }}
         role="slider"
         aria-valuenow={Math.round(sliderPos)}
         aria-valuemin={0}
@@ -84,6 +88,8 @@ function BeforeAfterCard({ item, index, onSelectProject, lang = 'en' }) {
           loading="lazy"
         />
 
+        {hasPair && (
+        <>
         {/* Clipped Layer: Before Image with hardware-accelerated clipPath */}
         <div
           className="ba-before-layer"
@@ -110,7 +116,11 @@ function BeforeAfterCard({ item, index, onSelectProject, lang = 'en' }) {
 
         {/* Frosted Badges */}
         <div className="ba-badge-pill ba-badge-before">{isSq ? 'Para' : 'Before'}</div>
-        <div className="ba-badge-pill ba-badge-after">{isSq ? 'Pas' : 'After'}</div>
+        </>
+        )}
+        <div className="ba-badge-pill ba-badge-after">
+          {hasPair ? (isSq ? 'Pas' : 'After') : isSq ? 'E përfunduar' : 'Finished'}
+        </div>
       </div>
 
       {/* Meta Footer */}
@@ -129,7 +139,18 @@ function BeforeAfterCard({ item, index, onSelectProject, lang = 'en' }) {
 
 export default function BeforeAfterSlider({ onNavigate, onOpenEstimate, lang = 'en' }) {
   const isSq = lang === 'sq';
-  const cases = siteData.beforeAfterCases.slice(0, 3);
+  // Every real project, each with a verified same-room before/after pair
+  const cases = projectsList.map((p) => ({
+    id: p.slug,
+    title: p.title,
+    titleSq: p.titleSq,
+    location: p.location,
+    locationSq: p.locationSq,
+    duration: p.scope,
+    durationSq: p.scopeSq,
+    beforeImage: p.beforeImage,
+    afterImage: p.afterImage,
+  }));
 
   return (
     <section id="before-after" className="before-after-section">
@@ -158,8 +179,8 @@ export default function BeforeAfterSlider({ onNavigate, onOpenEstimate, lang = '
             >
               <p className="ba-subtitle">
                 {isSq
-                  ? 'Lëvizni rrëshqitësin për të krahasuar gjendjen para dhe pas punimeve. Projektet e verifikuara të Forest-Al do të shtohen këtu.'
-                  : 'Drag the slider to compare the condition before and after the work. Verified Forest-Al projects will be added here.'}
+                  ? 'Lëvizni rrëshqitësin për të krahasuar gjendjen para dhe pas punimeve.'
+                  : 'Drag the slider to compare the condition before and after the work.'}
               </p>
 
               <motion.button

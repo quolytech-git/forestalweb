@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Original project photos/videos (optimized copies live in public/gallery)
+projektetepunevetona/

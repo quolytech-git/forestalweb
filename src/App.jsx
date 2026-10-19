@@ -15,6 +15,8 @@ import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ProjectsPage from './pages/ProjectsPage';
 import ProjectDetailPage from './pages/ProjectDetailPage';
+import GalleryPage from './pages/GalleryPage';
+import GalleryDetailPage from './pages/GalleryDetailPage';
 import ServicesPage from './pages/ServicesPage';
 import ServiceDetailPage from './pages/ServiceDetailPage';
 import AreasPage from './pages/AreasPage';
@@ -24,36 +26,41 @@ import RealEstateRedirectPop from './components/RealEstateRedirectPop';
 import { siteData } from './data/siteData';
 import { serviceDetailsMap } from './data/serviceDetailsData';
 import { projectDetailsMap } from './data/projectDetailsData';
+import { galleryDetailsMap } from './data/galleryData';
 
 export default function App() {
   const getInitialRoute = () => {
     try {
       const hash = window.location.hash.replace('#', '');
       if (hash.startsWith('project/')) {
-        return { page: 'project-detail', slug: hash.replace('project/', '') || 'project-01', serviceSlug: 'metal-structures' };
+        return { page: 'project-detail', slug: hash.replace('project/', '') || 'garden-building', serviceSlug: 'metal-structures' };
       }
       if (hash === 'project-detail') {
-        return { page: 'project-detail', slug: 'project-01', serviceSlug: 'metal-structures' };
+        return { page: 'project-detail', slug: 'garden-building', serviceSlug: 'metal-structures' };
+      }
+      if (hash.startsWith('gallery/')) {
+        return { page: 'gallery-detail', slug: 'garden-building', serviceSlug: 'metal-structures', gallerySlug: hash.replace('gallery/', '') || 'garden-building' };
       }
       if (hash.startsWith('service/')) {
-        return { page: 'service-detail', slug: 'project-01', serviceSlug: hash.replace('service/', '') || 'metal-structures' };
+        return { page: 'service-detail', slug: 'garden-building', serviceSlug: hash.replace('service/', '') || 'metal-structures' };
       }
       if (hash === 'service-detail') {
-        return { page: 'service-detail', slug: 'project-01', serviceSlug: 'metal-structures' };
+        return { page: 'service-detail', slug: 'garden-building', serviceSlug: 'metal-structures' };
       }
-      if (['home', 'about', 'project', 'services', 'areas', 'contact'].includes(hash)) {
-        return { page: hash, slug: 'project-01', serviceSlug: 'metal-structures' };
+      if (['home', 'about', 'project', 'gallery', 'services', 'areas', 'contact'].includes(hash)) {
+        return { page: hash, slug: 'garden-building', serviceSlug: 'metal-structures' };
       }
     } catch {
       // ignore
     }
-    return { page: 'home', slug: 'project-01', serviceSlug: 'metal-structures' };
+    return { page: 'home', slug: 'garden-building', serviceSlug: 'metal-structures' };
   };
 
   const initialRoute = getInitialRoute();
   const [activePage, setActivePage] = useState(initialRoute.page);
   const [selectedProjectSlug, setSelectedProjectSlug] = useState(initialRoute.slug);
   const [selectedServiceSlug, setSelectedServiceSlug] = useState(initialRoute.serviceSlug || 'metal-structures');
+  const [selectedGallerySlug, setSelectedGallerySlug] = useState(initialRoute.gallerySlug || 'garden-building');
   const [isLoading, setIsLoading] = useState(true);
   // 'letters' (First LoadingScreen with animated letters) | 'curtain' (SecondLoadingScreen - no letters)
   const [loaderVariant] = useState('letters');
@@ -66,9 +73,10 @@ export default function App() {
   const [isRealEstatePopOpen, setIsRealEstatePopOpen] = useState(false);
   const [lang, setLang] = useState(() => {
     try {
-      return localStorage.getItem('forestal_lang') || 'en';
+      // Albanian is the default language; English is the alternative
+      return localStorage.getItem('forestal_lang') || 'sq';
     } catch {
-      return 'en';
+      return 'sq';
     }
   });
 
@@ -96,6 +104,16 @@ export default function App() {
           descriptionSq: s.subtitleSq,
         };
       }
+    } else if (activePage === 'gallery-detail') {
+      const g = galleryDetailsMap[selectedGallerySlug];
+      if (g) {
+        entry = {
+          title: `${g.title} | Gallery | Forest-Al`,
+          titleSq: `${g.titleSq} | Galeria | Forest-Al`,
+          description: g.intro,
+          descriptionSq: g.introSq,
+        };
+      }
     } else if (activePage === 'project-detail') {
       const p = projectDetailsMap[selectedProjectSlug];
       if (p) {
@@ -111,7 +129,7 @@ export default function App() {
     document.documentElement.lang = isSq ? 'sq' : 'en';
     const meta = document.querySelector('meta[name="description"]');
     if (meta) meta.setAttribute('content', isSq ? entry.descriptionSq : entry.description);
-  }, [activePage, lang, selectedServiceSlug, selectedProjectSlug]);
+  }, [activePage, lang, selectedServiceSlug, selectedProjectSlug, selectedGallerySlug]);
 
   // 1. Lenis Smooth Scrolling (Silky smooth, slightly slower, luxurious easing)
   useEffect(() => {
@@ -193,12 +211,16 @@ export default function App() {
     if (targetPageId === 'project-detail') {
       if (targetSlug) setSelectedProjectSlug(targetSlug);
       setActivePage('project-detail');
-      window.location.hash = `project/${targetSlug || selectedProjectSlug || 'project-01'}`;
+      window.location.hash = `project/${targetSlug || selectedProjectSlug || 'garden-building'}`;
     } else if (targetPageId.startsWith('project/')) {
       const slug = targetPageId.replace('project/', '');
       setSelectedProjectSlug(slug);
       setActivePage('project-detail');
       window.location.hash = targetPageId;
+    } else if (targetPageId === 'gallery-detail') {
+      if (targetSlug) setSelectedGallerySlug(targetSlug);
+      setActivePage('gallery-detail');
+      window.location.hash = `gallery/${targetSlug || selectedGallerySlug || 'garden-building'}`;
     } else if (targetPageId === 'service-detail') {
       if (targetSlug) setSelectedServiceSlug(targetSlug);
       setActivePage('service-detail');
@@ -212,7 +234,7 @@ export default function App() {
       setActivePage(targetPageId);
       window.location.hash = targetPageId;
     }
-  }, [selectedProjectSlug, selectedServiceSlug]);
+  }, [selectedProjectSlug, selectedServiceSlug, selectedGallerySlug]);
 
   // Handle URL hash changes or browser history
   useEffect(() => {
@@ -225,17 +247,20 @@ export default function App() {
 
       if (hash.startsWith('project/')) {
         targetPage = 'project-detail';
-        targetSlug = hash.replace('project/', '') || 'project-01';
+        targetSlug = hash.replace('project/', '') || 'garden-building';
       } else if (hash === 'project-detail') {
         targetPage = 'project-detail';
-        targetSlug = selectedProjectSlug || 'project-01';
+        targetSlug = selectedProjectSlug || 'garden-building';
+      } else if (hash.startsWith('gallery/')) {
+        targetPage = 'gallery-detail';
+        targetSlug = hash.replace('gallery/', '') || 'garden-building';
       } else if (hash.startsWith('service/')) {
         targetPage = 'service-detail';
         targetSlug = hash.replace('service/', '') || 'metal-structures';
       } else if (hash === 'service-detail') {
         targetPage = 'service-detail';
         targetSlug = selectedServiceSlug || 'metal-structures';
-      } else if (['home', 'about', 'project', 'services', 'areas', 'contact'].includes(hash)) {
+      } else if (['home', 'about', 'project', 'gallery', 'services', 'areas', 'contact'].includes(hash)) {
         targetPage = hash;
       }
 
@@ -243,7 +268,8 @@ export default function App() {
         targetPage !== activePage ||
         (targetSlug &&
           ((targetPage === 'project-detail' && targetSlug !== selectedProjectSlug) ||
-            (targetPage === 'service-detail' && targetSlug !== selectedServiceSlug)));
+            (targetPage === 'service-detail' && targetSlug !== selectedServiceSlug) ||
+            (targetPage === 'gallery-detail' && targetSlug !== selectedGallerySlug)));
 
       if (isChanged) {
         if (curtainPhase === 'idle') {
@@ -259,7 +285,7 @@ export default function App() {
 
     window.addEventListener('hashchange', handleHash);
     return () => window.removeEventListener('hashchange', handleHash);
-  }, [activePage, selectedProjectSlug, selectedServiceSlug, curtainPhase, executePageChange]);
+  }, [activePage, selectedProjectSlug, selectedServiceSlug, selectedGallerySlug, curtainPhase, executePageChange]);
 
   // Navigate to any page using the architectural "from down to up" curtain transition
   const navigateTo = (pageId, paramSlug = null) => {
@@ -267,7 +293,8 @@ export default function App() {
       pageId === activePage &&
       (!paramSlug ||
         (pageId === 'project-detail' && paramSlug === selectedProjectSlug) ||
-        (pageId === 'service-detail' && paramSlug === selectedServiceSlug));
+        (pageId === 'service-detail' && paramSlug === selectedServiceSlug) ||
+        (pageId === 'gallery-detail' && paramSlug === selectedGallerySlug));
 
     if (isSamePage) {
       if (window.__lenis) {
@@ -355,6 +382,8 @@ export default function App() {
             ? 'project'
             : activePage === 'service-detail'
             ? 'services'
+            : activePage === 'gallery-detail'
+            ? 'gallery'
             : activePage
         }
         setActivePage={navigateTo}
@@ -369,7 +398,8 @@ export default function App() {
           key={
             activePage +
             (activePage === 'project-detail' ? `-${selectedProjectSlug}` : '') +
-            (activePage === 'service-detail' ? `-${selectedServiceSlug}` : '')
+            (activePage === 'service-detail' ? `-${selectedServiceSlug}` : '') +
+            (activePage === 'gallery-detail' ? `-${selectedGallerySlug}` : '')
           }
           variants={pageVariants}
           initial="initial"
@@ -404,6 +434,23 @@ export default function App() {
             <ProjectDetailPage
               projectSlug={selectedProjectSlug}
               onOpenEstimate={handleOpenEstimate}
+              onNavigate={navigateTo}
+              lang={lang}
+            />
+          )}
+
+          {activePage === 'gallery' && (
+            <GalleryPage
+              onOpenEstimate={() => handleOpenEstimate()}
+              onNavigate={navigateTo}
+              lang={lang}
+            />
+          )}
+
+          {activePage === 'gallery-detail' && (
+            <GalleryDetailPage
+              gallerySlug={selectedGallerySlug}
+              onOpenEstimate={() => handleOpenEstimate()}
               onNavigate={navigateTo}
               lang={lang}
             />
@@ -452,6 +499,8 @@ export default function App() {
           activePage !== 'about' &&
           activePage !== 'project' &&
           activePage !== 'project-detail' &&
+          activePage !== 'gallery' &&
+          activePage !== 'gallery-detail' &&
           activePage !== 'services' &&
           activePage !== 'service-detail' &&
           activePage !== 'areas'

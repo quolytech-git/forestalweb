@@ -12,13 +12,13 @@ const guaranteeFeatures = [
   },
   {
     icon: pricingIcon,
-    title: 'Quotation before work starts',
-    titleSq: 'Preventiv para fillimit të punës',
+    title: 'A quote before any work starts',
+    titleSq: 'Preventiv para se të nisë puna',
   },
   {
     icon: writingIcon,
-    title: 'Agreed scope of work',
-    titleSq: 'Objekt pune i rënë dakord',
+    title: 'Work agreed in advance',
+    titleSq: 'Punë e rënë dakord paraprakisht',
   },
 ];
 
@@ -39,17 +39,17 @@ export default function GuaranteeSection({ onOpenEstimate, lang = 'en' }) {
             <div className="guarantee-header-block">
               <span className="guarantee-eyebrow">{isSq ? '// Cilësia dhe Besimi' : '// Quality and Confidence'}</span>
               <h2 className="guarantee-heading">
-                {isSq ? 'Punë e kujdesshme, sipas asaj që biem dakord.' : 'Careful work, done to what we agreed.'}
+                {isSq ? 'Punë e kujdesshme, ashtu siç biem dakord.' : 'Careful work, done the way we agreed.'}
               </h2>
             </div>
 
-            {/* Circular 10-Year Emblem */}
+            {/* Circular experience emblem */}
             <div className="guarantee-emblem-wrap">
               <div className="guarantee-dashed-ring">
                 <div className="guarantee-circle-fill">
-                  <span className="guarantee-number">6</span>
-                  <span className="guarantee-unit-years">{isSq ? 'HAPA' : 'STEPS'}</span>
-                  <span className="guarantee-unit-warranty">{isSq ? 'PROCES I QARTË' : 'CLEAR PROCESS'}</span>
+                  <span className="guarantee-number">15+</span>
+                  <span className="guarantee-unit-years">{isSq ? 'VITE' : 'YEARS'}</span>
+                  <span className="guarantee-unit-warranty">{isSq ? 'PËRVOJË' : 'OF EXPERIENCE'}</span>
                 </div>
               </div>
             </div>
@@ -75,8 +75,8 @@ export default function GuaranteeSection({ onOpenEstimate, lang = 'en' }) {
 
             <p className="guarantee-desc-text">
               {isSq
-                ? 'Para fillimit biem dakord për objektin e punës, materialet dhe grafikun. Gjatë punës ju mbajmë të informuar, dhe në fund e kontrollojmë punën së bashku me ju. [Kushtet e garancisë, nëse ka, për t’u konfirmuar nga Forest-Al.]'
-                : 'Before work starts, we agree the scope, materials and schedule with you. During the work we keep you informed, and at the end we check the work together with you. [Warranty terms, if any, to be confirmed by Forest-Al.]'}
+                ? 'Para se të fillojmë, biem dakord bashkë për punën, materialet dhe grafikun. Gjatë punës ju mbajmë të informuar, dhe në fund e kontrollojmë punën së bashku.'
+                : 'Before we start, we agree the work, the materials and the schedule with you. During the job we keep you informed, and at the end we check the work together.'}
             </p>
           </div>
         </motion.div>

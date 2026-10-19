@@ -44,8 +44,8 @@ export default function ContactPage({ lang = 'en' }) {
           <h1>{isSq ? 'Kërkoni një preventiv falas.' : 'Request a free estimate.'}</h1>
           <p>
             {isSq
-              ? 'Na tregoni për punën e ndërtimit, rinovimit ose mirëmbajtjes që ju nevojitet. Do t’ju kthejmë përgjigje me hapat e radhës dhe, kur nevojitet, do të caktojmë një vizitë në objekt.'
-              : 'Tell us about the construction, renovation or maintenance work you need. We will reply with the next steps and, where needed, arrange a site visit.'}
+              ? 'Na tregoni çfarë pune ju nevojitet: ndërtim, rinovim apo mirëmbajtje. Do t’ju përgjigjemi me hapat e radhës dhe, kur duhet, vijmë ta shohim punën në vend.'
+              : 'Tell us what work you need: construction, renovation or maintenance. We will reply with the next steps and, where needed, come and see the job in person.'}
           </p>
         </div>
       </section>
@@ -78,8 +78,8 @@ export default function ContactPage({ lang = 'en' }) {
                   </h2>
                   <p style={{ fontSize: '14px', color: 'var(--text-muted)', marginBottom: '28px' }}>
                     {isSq
-                      ? 'Fushat me * janë të detyrueshme. Sa më shumë detaje të ndani, aq më saktë mund t’ju përgjigjemi. Duke dërguar formularin, pranoni që t’i përdorim këto të dhëna për t’iu përgjigjur, sipas Politikës sonë të Privatësisë.'
-                      : 'Fields marked * are required. The more detail you share, the more accurately we can respond. By sending this form, you agree that we use these details to reply to you, as described in our Privacy Policy.'}
+                      ? 'Fushat me * janë të detyrueshme. Sa më shumë detaje të na jepni, aq më saktë mund t’ju përgjigjemi. Të dhënat tuaja i përdorim vetëm për t’ju kthyer përgjigje, sipas Politikës sonë të Privatësisë.'
+                      : 'Fields marked * are required. The more detail you give us, the more accurately we can reply. We only use your details to get back to you, as described in our Privacy Policy.'}
                   </p>
 
                   <div className="form-group">
@@ -221,9 +221,9 @@ export default function ContactPage({ lang = 'en' }) {
                         <>Thank you, <strong>{name}</strong>. We have received your request for <strong>{serviceLabel}</strong>. We will review it and contact you with the next steps.</>
                       )
                     ) : isSq ? (
-                      <>Kërkesat online nuk janë ende aktive, prandaj kjo kërkesë <strong>nuk është dërguar</strong>. Ju lutemi na kontaktoni drejtpërdrejt në <strong>{siteData.brand.phone}</strong> ose <strong>{siteData.brand.email}</strong>.</>
+                      <>Formulari online nuk është ende aktiv, prandaj kjo kërkesë <strong>nuk u dërgua</strong>. Ju lutemi na telefononi në <strong>{siteData.brand.phone}</strong> ose na shkruani në <strong>{siteData.brand.email}</strong>.</>
                     ) : (
-                      <>Online requests are not active yet, so this request <strong>has not been sent</strong>. Please contact us directly on <strong>{siteData.brand.phone}</strong> or at <strong>{siteData.brand.email}</strong>.</>
+                      <>The online form is not active yet, so this request <strong>was not sent</strong>. Please call us on <strong>{siteData.brand.phone}</strong> or email <strong>{siteData.brand.email}</strong>.</>
                     )}
                   </p>
                   <button
@@ -253,6 +253,11 @@ export default function ContactPage({ lang = 'en' }) {
                 <h3 style={{ fontSize: '24px', color: '#ffffff', marginBottom: '24px' }}>
                   {isSq ? 'Na kontaktoni drejtpërdrejt' : 'Contact us directly'}
                 </h3>
+                <p style={{ fontSize: '14px', color: 'var(--text-light-muted)', margin: '-12px 0 24px', lineHeight: 1.6 }}>
+                  {isSq
+                    ? 'Jemi gjithmonë të hapur për të diskutuar projektin tuaj. Na telefononi, na shkruani ose na gjeni në zyrë.'
+                    : 'We are always open to discuss your project. Call us, write to us or come and find us at the office.'}
+                </p>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                   <div style={{ display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
@@ -285,9 +290,14 @@ export default function ContactPage({ lang = 'en' }) {
                     </div>
                     <div>
                       <div style={{ fontSize: '12px', color: 'var(--text-light-muted)', textTransform: 'uppercase' }}>{isSq ? 'Zyra' : 'Office'}</div>
-                      <div style={{ fontSize: '15px', color: '#ffffff' }}>
+                      <a
+                        href={siteData.brand.mapUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ fontSize: '15px', color: '#ffffff', textDecoration: 'underline', textUnderlineOffset: '3px' }}
+                      >
                         {isSq ? siteData.brand.addressSq : siteData.brand.address}
-                      </div>
+                      </a>
                     </div>
                   </div>
 
@@ -296,7 +306,7 @@ export default function ContactPage({ lang = 'en' }) {
                       <Clock size={16} color="var(--accent-sand)" />
                     </div>
                     <div>
-                      <div style={{ fontSize: '12px', color: 'var(--text-light-muted)', textTransform: 'uppercase' }}>{isSq ? 'Orari' : 'Opening hours'}</div>
+                      <div style={{ fontSize: '12px', color: 'var(--text-light-muted)', textTransform: 'uppercase' }}>{isSq ? 'Orari i zyrës' : 'Office hours'}</div>
                       <div style={{ fontSize: '15px', color: '#ffffff' }}>
                         {isSq ? siteData.brand.hoursSq : siteData.brand.hours}
                       </div>
@@ -321,11 +331,11 @@ export default function ContactPage({ lang = 'en' }) {
                   <ShieldCheck size={28} color="var(--accent-gold)" />
                 </div>
                 <div>
-                  <h4 style={{ fontSize: '16px', marginBottom: '4px' }}>{isSq ? 'Objekt pune i qartë' : 'A clear scope of work'}</h4>
+                  <h4 style={{ fontSize: '16px', marginBottom: '4px' }}>{isSq ? 'Marrëveshje e qartë' : 'A clear agreement'}</h4>
                   <p style={{ fontSize: '13px', color: 'var(--text-muted)' }}>
                     {isSq
-                      ? 'Para fillimit biem dakord me ju për objektin e punës dhe preventivin, që të dini saktë çfarë do të bëhet.'
-                      : 'We agree the scope of work and the quotation with you before work starts, so you know exactly what will be done.'}
+                      ? 'Para se të fillojmë, biem dakord bashkë për punën dhe preventivin, që ta dini saktë çfarë do të bëhet.'
+                      : 'Before we start, we agree the work and the quote together, so you know exactly what will be done.'}
                   </p>
                 </div>
               </div>

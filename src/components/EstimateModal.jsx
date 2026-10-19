@@ -7,11 +7,11 @@ import { siteData, timelineOptions } from '../data/siteData';
 // Six grouped choices keep the popup the same size as before.
 const SERVICE_CHOICES = [
   { value: 'Metal Structures', en: 'Metal Structures', sq: 'Konstruksione Metalike' },
-  { value: 'Drywall Partitions & Ceilings', en: 'Drywall Partitions & Ceilings', sq: 'Ndarje dhe Tavane me Gips' },
-  { value: 'Construction Works', en: 'Construction Works', sq: 'Punime Ndërtimore' },
-  { value: 'Interior Renovation', en: 'Interior Renovation', sq: 'Rinovim i Brendshëm' },
+  { value: 'Partitions & Ceilings', en: 'Partitions & Ceilings', sq: 'Ndarje dhe Tavane' },
+  { value: 'Construction', en: 'Construction', sq: 'Ndërtim' },
+  { value: 'Renovation', en: 'Renovation', sq: 'Rinovim' },
   { value: 'Maintenance', en: 'Maintenance & Repairs', sq: 'Mirëmbajtje dhe Riparime' },
-  { value: 'Other / Not sure', en: 'Something else / Not sure yet', sq: 'Diçka tjetër / Ende s’jam i sigurt' },
+  { value: 'Other / Not sure', en: 'Something else / Not sure yet', sq: 'Diçka tjetër / Nuk jam ende i sigurt' },
 ];
 
 export default function EstimateModal({ isOpen, onClose, initialService, lang = 'en' }) {
@@ -83,8 +83,8 @@ export default function EstimateModal({ isOpen, onClose, initialService, lang = 
               </h2>
               <p style={{ fontSize: '14px', color: 'var(--text-muted)' }}>
                 {isSq
-                  ? 'Përshkruani punën që ju nevojitet. Disa punë mund të vlerësohen nga përshkrimi dhe fotot; të tjerat kërkojnë një vizitë në vend para preventivit.'
-                  : 'Describe the work you need. Some jobs can be priced from a description and photos; others need a site visit before we can quote.'}
+                  ? 'Përshkruani punën që ju nevojitet. Punët e vogla shpesh i vlerësojmë nga një përshkrim dhe disa foto; për të tjerat vijmë në vend para se t’ju japim preventivin.'
+                  : 'Describe the work you need. Smaller jobs can often be priced from a description and a few photos; for others we visit before giving you a quote.'}
               </p>
             </div>
 

@@ -10,10 +10,10 @@ export default function Hero({ onOpenEstimate, onViewWork, lang = 'en' }) {
     line1: isSq ? 'Ndërtim, rinovim' : 'Construction, renovation',
     line2: isSq ? 'dhe mirëmbajtje pronash.' : 'and property maintenance.',
     paragraph: isSq
-      ? 'Forest-Al kryen punime ndërtimore me konstruksione metalike dhe pllaka gipsi, si dhe mirëmbajtje elektrike, hidraulike, mekanike dhe ndërtimore për çdo lloj aseti. Çdo projekt fillon me kuptimin e pronës dhe me një objekt pune të qartë.'
-      : 'Forest-Al carries out construction works with metal structures and drywall systems, and provides electrical, plumbing, mechanical and building maintenance for every type of property. Every project starts with understanding the property and agreeing a clear scope of work.',
+      ? 'Mbi 15 vjet përvojë dhe mbi 100 projekte të përfunduara në Tiranë, Durrës, Korçë dhe Qeparo. Punojmë në gjithë Shqipërinë, me staf të kualifikuar, në ndërtim, rinovim dhe mirëmbajtje për çdo lloj prone.'
+      : 'More than 15 years of experience and over 100 completed projects in Tirana, Durrës, Korçë and Qeparo. We work across all of Albania, with qualified staff, on construction, renovation and maintenance for every kind of property.',
     primary: isSq ? 'Kërkoni një Preventiv Falas' : 'Request a Free Estimate',
-    secondary: isSq ? 'Shikoni Punimet Tona' : 'Explore Our Work',
+    secondary: isSq ? 'Shikoni Punët Tona' : 'See Our Work',
     badges: isSq ? ['Ndërtim', 'Rinovim', 'Mirëmbajtje'] : ['Construction', 'Renovation', 'Maintenance'],
   };
   // Smooth scroll parallax for the hero image and content

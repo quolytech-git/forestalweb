@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import whyChooseUsImg from '../assets/why-choose-us/image.png';
+const whyChooseUsImg = '/gallery/lakeview-residence/9.jpg';
 
 // SVG Icons exactly matching the Framer assets
 const CalendarIcon = () => (
@@ -67,31 +67,31 @@ const StarIcon = () => (
 const cardsData = [
   {
     icon: <CalendarIcon />,
-    title: 'Organised execution.',
+    title: 'Organised work.',
     titleSq: 'Punë e organizuar.',
-    description: 'Work is planned in stages and carried out in the agreed order, with a tidy, safe site.',
-    descriptionSq: 'Puna planifikohet me faza dhe kryhet sipas radhës së rënë dakord, në një kantier të rregullt dhe të sigurt.',
+    description: 'We plan the work in stages and carry it out in the agreed order, on a tidy, safe site.',
+    descriptionSq: 'E planifikojmë punën me faza dhe e bëjmë sipas radhës së rënë dakord, me kantier të rregullt dhe të sigurt.',
   },
   {
     icon: <ManagerIcon />,
     title: 'Clear communication.',
     titleSq: 'Komunikim i qartë.',
-    description: 'You know what will be done, what it involves and what happens next, before and during the work.',
-    descriptionSq: 'E dini çfarë do të bëhet, çfarë përfshin dhe cili është hapi i radhës, para dhe gjatë punës.',
+    description: 'You always know what will be done, what it involves and what comes next.',
+    descriptionSq: 'Gjithmonë e dini çfarë do të bëhet, çfarë përfshin dhe cili është hapi i radhës.',
   },
   {
     icon: <WalletIcon />,
-    title: 'A clear scope and quotation.',
-    titleSq: 'Objekt pune dhe preventiv i qartë.',
-    description: 'We agree the scope of work and the quotation with you before work starts, so expectations are clear on both sides.',
-    descriptionSq: 'Objektin e punës dhe preventivin i biem dakord me ju para fillimit, që pritshmëritë të jenë të qarta për të dyja palët.',
+    title: 'A clear quote from the start.',
+    titleSq: 'Preventiv i qartë që në fillim.',
+    description: 'We agree the work and the quote with you before we start, so there are no surprises.',
+    descriptionSq: 'Punën dhe preventivin i biem dakord me ju para se të fillojmë, që të mos ketë surpriza.',
   },
   {
     icon: <ShieldIcon />,
     title: 'Solutions that fit the property.',
     titleSq: 'Zgjidhje sipas pronës.',
-    description: 'Construction, renovation and maintenance planned around the building and how it is used.',
-    descriptionSq: 'Ndërtim, rinovim dhe mirëmbajtje të planifikuara sipas objektit dhe mënyrës si përdoret.',
+    description: 'Every job is planned around the building and the way you use it.',
+    descriptionSq: 'Çdo punë e planifikojmë sipas objektit dhe mënyrës si e përdorni.',
   },
 ];
 
@@ -125,15 +125,15 @@ export default function TrustSection({ lang = 'en' }) {
             </h2>
             <p className="why-choose-us-subtitle">
               {isSq
-                ? 'Planifikim praktik, punë e kujdesshme dhe komunikim i qartë nga konsulta e parë deri në dorëzim.'
-                : 'Practical planning, careful workmanship and clear communication from the first consultation to handover.'}
+                ? 'Mbi 15 vjet përvojë, planifikim praktik, punë e kujdesshme dhe komunikim i qartë, nga takimi i parë deri në dorëzim.'
+                : 'More than 15 years of experience, practical planning, careful workmanship and clear communication, from the first meeting to handover.'}
             </p>
 
             {/* Photo Card with Frosted Overlay & 5.0 Rating */}
             <div className="why-choose-us-img-card">
               <img
                 src={whyChooseUsImg}
-                alt={isSq ? 'Pronarë që mbajnë një maketë shtëpie' : 'Property owners holding a model house'}
+                alt={isSq ? 'Ekipi i Forest-Al duke punuar në një apartament' : 'The Forest-Al team at work in an apartment'}
                 className="why-choose-us-img"
                 loading="lazy"
               />

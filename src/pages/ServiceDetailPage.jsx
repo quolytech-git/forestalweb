@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ChevronLeft, ChevronRight, X, ZoomIn, Plus, Minus } from 'lucide-react';
 import { serviceDetailsMap } from '../data/serviceDetailsData';
 import { projectDetailsMap } from '../data/projectDetailsData';
+import useSliderFrame from '../components/useSliderFrame';
 
 // Framer-exact chevrons icon (< >)
 const SliderChevronsIcon = () => (
@@ -28,6 +29,8 @@ const SliderChevronsIcon = () => (
 // Interactive Before/After Comparison Card for Related Projects
 function RelatedProjectCard({ project, onNavigate, lang }) {
   const isSq = lang === 'sq';
+  // Projects without a verified same-room pair show their finished photo only
+  const hasPair = Boolean(project.beforeImage);
   const [sliderPos, setSliderPos] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef(null);
@@ -76,8 +79,10 @@ function RelatedProjectCard({ project, onNavigate, lang }) {
       <div
         ref={containerRef}
         className="pd-related-slider-wrapper"
-        onMouseDown={handlePointerDown}
-        onTouchStart={handlePointerDown}
+        onMouseDown={hasPair ? handlePointerDown : undefined}
+        onTouchStart={hasPair ? handlePointerDown : undefined}
+        onClick={hasPair ? undefined : () => onNavigate && onNavigate(`project/${project.slug}`)}
+        style={hasPair ? undefined : { cursor: 'pointer' }}
       >
         <img
           src={project.afterImage}
@@ -86,6 +91,8 @@ function RelatedProjectCard({ project, onNavigate, lang }) {
           loading="lazy"
         />
 
+        {hasPair && (
+        <>
         <div
           className="pd-slider-clip"
           style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}
@@ -105,10 +112,12 @@ function RelatedProjectCard({ project, onNavigate, lang }) {
         </div>
 
         <div className="pd-pill-tag pd-pill-before">
-          {isSq ? 'Përpara' : 'Before'}
+          {isSq ? 'Para' : 'Before'}
         </div>
+        </>
+        )}
         <div className="pd-pill-tag pd-pill-after">
-          {isSq ? 'Më Pas' : 'After'}
+          {hasPair ? (isSq ? 'Pas' : 'After') : isSq ? 'E përfunduar' : 'Finished'}
         </div>
       </div>
 
@@ -144,6 +153,7 @@ export default function ServiceDetailPage({
 }) {
   const isSq = lang === 'sq';
   const service = serviceDetailsMap[serviceSlug] || serviceDetailsMap['metal-structures'];
+  const heroFrame = useSliderFrame(service.heroBeforeImage, service.heroAfterImage);
 
   // Hero Before/After comparison slider state
   const [heroSliderPos, setHeroSliderPos] = useState(50);
@@ -273,10 +283,11 @@ export default function ServiceDetailPage({
           </div>
 
           {/* Interactive Hero Showcase (Before/After Slider) */}
-          <div className="pd-hero-slider-container">
+          <div className="pd-hero-slider-container" style={heroFrame ? { maxWidth: heroFrame.width } : undefined}>
             <div
               ref={heroSliderRef}
               className="pd-hero-slider"
+              style={heroFrame ? { aspectRatio: heroFrame.aspect, minHeight: 0 } : undefined}
               onMouseDown={handleHeroPointerDown}
               onTouchStart={handleHeroPointerDown}
               role="slider"
@@ -318,10 +329,10 @@ export default function ServiceDetailPage({
 
               {/* Badges */}
               <div className="pd-pill-tag pd-pill-before">
-                {isSq ? 'Përpara' : 'Before'}
+                {isSq ? 'Para' : 'Before'}
               </div>
               <div className="pd-pill-tag pd-pill-after">
-                {isSq ? 'Më Pas' : 'After'}
+                {isSq ? 'Pas' : 'After'}
               </div>
             </div>
           </div>
@@ -423,7 +434,7 @@ export default function ServiceDetailPage({
         <div className="container">
           <div className="service-process-header">
             <span className="service-process-tag">
-              // {isSq ? 'Metodologjia Jonë' : 'Our Process'}
+              // {isSq ? 'Si Punojmë' : 'Our Process'}
             </span>
             <h2 className="service-process-title">
               {isSq ? 'Hap pas hapi, nga fillimi në fund.' : 'Step by step, start to finish.'}
